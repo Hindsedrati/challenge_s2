@@ -1,9 +1,16 @@
 import { BrowserLink } from "../components/BrowserRouter.js";
 // import Button from "../components/Button/Button.js";
 // import Card from "../components/Card.js";
-// import MiniReact from "../core/MiniReact.js";
+import MiniReact from "../core/MiniReact.js";
+import Text from "../components/Text/Text.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
+
+const hello = MiniReact.createElement(Text, {
+  title: "Hello",
+  classes: "text-xl bg-green",
+});
+console.log(hello);
 
 // const cardData = [
 //   {
@@ -135,6 +142,7 @@ export default {
         },
       ],
     },
+    hello,
     // button,
     // {
     //   type: "div",
