@@ -1,24 +1,19 @@
-function htmlToJson(element) {
-    let obj = { tag: element.tagName.toLowerCase() };
-    if (element.attributes.length > 0) {
-        obj.attributes = Array.from(element.attributes).reduce((attrs, attribute) => {
-            attrs[attribute.name] = attribute.value;
-            return attrs;
-        }, {});
-    }
-    if (element.childElementCount > 0) {
-        obj.children = Array.from(element.children).map(child => htmlToJson(child));
-    } else if (element.textContent) {
-        obj.textContent = element.textContent;
-    }
-    return obj;
-}
+import Component from "../components/Component.js";
 
-export const createElement = function createElement(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const json = htmlToJson(doc.body.firstChild);
-    return json;
+const MiniReact = {
+  createElement: (MyComponent, props) => {
+    if (MyComponent.prototype instanceof Component) {
+      return new MyComponent(props).render();
+    } else {
+      return MyComponent(props);
+    }
+  },
+  createFunctionalElement: (type, props = {}, events = {}, children = []) => ({
+    type,
+    events,
+    children,
+    props: { ...props },
+  }),
 };
 
-export class Component { }
+export default MiniReact;
