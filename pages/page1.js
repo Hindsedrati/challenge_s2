@@ -15,7 +15,7 @@ const hello = MiniReact.createElement(Text, {
 const image = MiniReact.createElement(Image, {
   src: "../ceo.png",
   alt: "CEO de la boite",
-  classes: "rounded-xl",
+  classes: "",
 });
 
 // const cardData = [
