@@ -17,7 +17,6 @@ const image = MiniReact.createElement(Image, {
   alt: "CEO de la boite",
   classes: "",
 });
-console.log(image);
 
 // const cardData = [
 //   {
