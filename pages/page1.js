@@ -3,6 +3,7 @@ import { BrowserLink } from "../components/BrowserRouter.js";
 // import Card from "../components/Card.js";
 import MiniReact from "../core/MiniReact.js";
 import Text from "../components/Text/Text.js";
+import Image from "../components/Image/Image.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
@@ -10,7 +11,13 @@ const hello = MiniReact.createElement(Text, {
   title: "Hello",
   classes: "text-xl bg-green",
 });
-console.log(hello);
+
+const image = MiniReact.createElement(Image, {
+  src: "../ceo.png",
+  alt: "CEO de la boite",
+  classes: "",
+});
+console.log(image);
 
 // const cardData = [
 //   {
@@ -143,6 +150,7 @@ export default {
       ],
     },
     hello,
+    image,
     // button,
     // {
     //   type: "div",
