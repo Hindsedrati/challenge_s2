@@ -1,18 +1,16 @@
-export class Component {
-  constructor(props = {}) {
-    this.props = props;
-  }
+export default class Component {
+    constructor(props = {}) {
+        this.props = props;
+    }
 
-  setState(state) {}
+    setState(state) { }
 
-  createElement(type, props = {}, events = {}, children = []) {
-    return {
-      type,
-      events,
-      children,
-      props: { ...props },
-    };
-  }
+    createElement(type, props = {}, events = {}, children = []) {
+        return {
+            type,
+            events,
+            children,
+            props: { ...props },
+        };
+    }
 }
-
-export default Component;
