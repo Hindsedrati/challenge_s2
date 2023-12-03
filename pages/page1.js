@@ -1,7 +1,7 @@
 import { BrowserLink } from "../components/BrowserRouter.js";
-// import Button from "../components/Button/Button.js";
+import Button from "../components/Button/Button.js";
+import MiniReact from "../core/MiniReact.js";
 // import Card from "../components/Card.js";
-// import MiniReact from "../core/MiniReact.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
@@ -47,12 +47,12 @@ const data = JSON.parse(localStorage.getItem("data") || "{}");
 // const allCard = cardData.map((data) => MiniReact.createElement(Card, data));
 // console.log(allCard);
 
-// const button = MiniReact.createElement(Button, {
-//   title: "Click me",
-//   class:
-//     "border border-black rounded-full px-4 py-2 hover:bg-black hover:text-white my-4",
-//   onClick: () => console.log("Click me"),
-// });
+const button = MiniReact.createElement(Button, {
+  title: "Click me",
+  class:
+    "border border-black rounded-full px-4 py-2 hover:bg-black hover:text-white my-4",
+  onClick: () => console.log("Click me"),
+});
 
 // const card = MiniReact.createElement(Card, {
 //   date: "22/07/2024",
@@ -135,7 +135,7 @@ export default {
         },
       ],
     },
-    // button,
+    button,
     // {
     //   type: "div",
     //   props: {
