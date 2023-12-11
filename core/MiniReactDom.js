@@ -19,15 +19,14 @@ const MiniReactDom = {
         } else if (propName.startsWith("data-")) {
           element.dataset[propName.replace("data-", "")] =
             structure.props[propName];
+        } else if (propName === "events") {
+          for (const eventName in structure.props[propName]) {
+            for (const eventListeners of structure.props[propName][eventName]) {
+              element.addEventListener(eventName, eventListeners);
+            }
+          }
         } else {
           element.setAttribute(propName, structure.props[propName]);
-        }
-      }
-    }
-    if (structure.events) {
-      for (const eventName in structure.events) {
-        for (const eventListeners of structure.events[eventName]) {
-          element.addEventListener(eventName, eventListeners);
         }
       }
     }

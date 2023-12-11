@@ -1,12 +1,7 @@
 import MiniReact from "../../core/MiniReact.js";
 
 const Text = (props) => {
-  return MiniReact.createFunctionalElement("p", { class: props.classes }, {}, [
-    {
-      type: "TEXT_NODE",
-      content: props.title,
-    },
-  ]);
+  return MiniReact.createElement("p", { class: props.classes }, props.title);
 };
 
 export default Text;
