@@ -6,11 +6,10 @@ import MiniReact from "../../core/MiniReact.js";
  * @returns {MiniReact.Component}
  */
 const Image = (props) => {
-  return MiniReact.createFunctionalElement(
-    "img",
-    { src: props.src, alt: props.alt, class: props.classes },
-    {},
-    []
-  );
+  return MiniReact.createElement("img", {
+    src: props.src,
+    alt: props.alt,
+    class: props.class,
+  });
 };
 export default Image;

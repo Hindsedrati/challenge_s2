@@ -1,7 +1,6 @@
 const BrowserRouter = function (routes, rootElement) {
   const generatePage = () => {
     const path = location.pathname;
-    console.log(path);
     if (rootElement.childNodes.length) {
       rootElement.replaceChild(
         this.renderStructure(routes[path]),
@@ -23,14 +22,14 @@ export const BrowserLink = function (props) {
     type: "a",
     props: {
       href: props.to,
-    },
-    events: {
-      click: [
-        function (event) {
-          event.preventDefault();
-          history.pushState(null, null, props.to);
-        },
-      ],
+      events: {
+        click: [
+          function (event) {
+            event.preventDefault();
+            history.pushState(null, null, props.to);
+          },
+        ],
+      },
     },
     children: [
       {

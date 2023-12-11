@@ -1,18 +1,13 @@
 import MiniReact from "../../core/MiniReact.js";
 
 const Button = (props) => {
-  return MiniReact.createFunctionalElement(
+  return MiniReact.createElement(
     "button",
     {
       class: props.class,
+      events: { click: [props.onClick] },
     },
-    { click: [props.onClick] },
-    [
-      {
-        type: "TEXT_NODE",
-        content: props.title,
-      },
-    ]
+    props.title
   );
 };
 export default Button;
