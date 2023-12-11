@@ -22,14 +22,15 @@ export const BrowserLink = function (props) {
     type: "a",
     props: {
       href: props.to,
-    },
-    events: {
-      click: [
-        function (event) {
-          event.preventDefault();
-          history.pushState(null, null, props.to);
-        },
-      ],
+      events: {
+        click: [
+          function (event) {
+            event.preventDefault();
+            history.pushState(null, null, props.to);
+            console.log("lien");
+          },
+        ],
+      },
     },
     children: [
       {
