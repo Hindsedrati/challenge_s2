@@ -1,19 +1,29 @@
 import Component from "../components/Component.js";
 
 const MiniReact = {
-  createElement: (MyComponent, props) => {
-    if (MyComponent.prototype instanceof Component) {
-      return new MyComponent(props).render();
+  createElement: (type, props, ...children) => {
+    const processedChildren = children.map((child) =>
+      typeof child === "object" ? child : MiniReact.createTextElement(child)
+    );
+
+    if (type.prototype instanceof Component) {
+      return new type({ ...props, children: processedChildren }).render();
+    } else if (typeof type === "function") {
+      return type({ ...props, children: processedChildren });
     } else {
-      return MyComponent(props);
+      return {
+        type,
+        children: processedChildren,
+        props: { ...props },
+      };
     }
   },
-  createFunctionalElement: (type, props = {}, events = {}, children = []) => ({
-    type,
-    events,
-    children,
-    props: { ...props },
-  }),
+  createTextElement: (text) => {
+    return {
+      type: "TEXT_NODE",
+      content: text,
+    };
+  },
 };
 
 export default MiniReact;
