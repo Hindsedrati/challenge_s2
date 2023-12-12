@@ -27,7 +27,6 @@ export const BrowserLink = function (props) {
           function (event) {
             event.preventDefault();
             history.pushState(null, null, props.to);
-            console.log("lien");
           },
         ],
       },
