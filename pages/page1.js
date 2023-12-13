@@ -1,4 +1,4 @@
-import {BrowserLink} from "../components/BrowserRouter.js";
+import { BrowserLink } from "../components/BrowserRouter.js";
 import EventCard from "../components/EventCard/EventCard.js";
 import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
@@ -28,6 +28,7 @@ const image = MiniReact.createElement(Image, {
 
 const eventCard = MiniReact.createElement(EventCard, {
     link: "https://google.com",
+    target: "_blank",
     date: "22/07/2024",
     title: "NATATION",
     time: "20:00",
@@ -47,6 +48,6 @@ export default {
         button,
         accueil,
         image,
-        eventCard,
+        eventCard
     ],
 };
