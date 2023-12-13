@@ -6,6 +6,7 @@ const EventCard = (props) => {
         {
             href: props.link,
             target: props.target,
+            class: "inline-block",
         },
         MiniReact.createElement(
             "div",
