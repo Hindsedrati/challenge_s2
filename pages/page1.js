@@ -59,7 +59,7 @@ const data = JSON.parse(localStorage.getItem("data") || "{}");
 const button = MiniReact.createElement(Button, {
   title: "Click me",
   class:
-    "text-grey border border-black rounded-full px-4 py-2 hover:text-custom-blue hover:text-white my-4",
+    "border border-black rounded-full px-4 py-2 hover:bg-black hover:text-white my-4",
   onClick: () => console.log("Click me"),
 });
 
