@@ -5,7 +5,7 @@ const Button = (props) => {
     "button",
     {
       class: props.class,
-      events: { click: [props.onClick] },
+      events: { click: props.onClick },
     },
     props.title
   );

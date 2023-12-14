@@ -21,9 +21,10 @@ const MiniReactDom = {
             structure.props[propName];
         } else if (propName === "events") {
           for (const eventName in structure.props[propName]) {
-            for (const eventListeners of structure.props[propName][eventName]) {
-              element.addEventListener(eventName, eventListeners);
-            }
+            element.addEventListener(
+              eventName,
+              structure.props[propName][eventName]
+            );
           }
         } else {
           element.setAttribute(propName, structure.props[propName]);

@@ -23,12 +23,10 @@ export const BrowserLink = function (props) {
     props: {
       href: props.to,
       events: {
-        click: [
-          function (event) {
-            event.preventDefault();
-            history.pushState(null, null, props.to);
-          },
-        ],
+        click: function (event) {
+          event.preventDefault();
+          history.pushState(null, null, props.to);
+        },
       },
     },
     children: [
