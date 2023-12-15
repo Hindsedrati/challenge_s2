@@ -39,9 +39,7 @@ const eventCard = MiniReact.createElement(EventCard, {
     image: "img/path" // Remplacez par le chemin de votre image.
 });
 
-const footer = MiniReact.createElement(Footer,{
-
-})
+const footer = MiniReact.createElement(Footer)
 
 export default {
     type: "div",
