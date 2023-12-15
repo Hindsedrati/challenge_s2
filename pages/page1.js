@@ -1,5 +1,6 @@
 import { BrowserLink } from "../components/BrowserRouter.js";
 import EventCard from "../components/EventCard/EventCard.js";
+import {TodoList} from "../components/Todos/TodoList.js";
 import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
@@ -38,6 +39,8 @@ const eventCard = MiniReact.createElement(EventCard, {
     image: "img/path" // Remplacez par le chemin de votre image.
 });
 
+const todoList = MiniReact.createElement(TodoList)
+
 export default {
     type: "div",
     children: [
@@ -45,9 +48,12 @@ export default {
             title: "Page 2",
             to: "/page2",
         }),
+        todoList,
         button,
         accueil,
         image,
-        eventCard
+        eventCard,
+
     ],
 };
+
