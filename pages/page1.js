@@ -1,5 +1,6 @@
 import { BrowserLink } from "../components/BrowserRouter.js";
 import EventCard from "../components/EventCard/EventCard.js";
+import Footer from "../components/Footer/Footer.js";
 import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
@@ -38,6 +39,8 @@ const eventCard = MiniReact.createElement(EventCard, {
     image: "img/path" // Remplacez par le chemin de votre image.
 });
 
+const footer = MiniReact.createElement(Footer)
+
 export default {
     type: "div",
     children: [
@@ -48,6 +51,7 @@ export default {
         button,
         accueil,
         image,
-        eventCard
+        eventCard,
+        footer
     ],
 };
