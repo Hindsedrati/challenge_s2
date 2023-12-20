@@ -5,14 +5,15 @@ import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
+import Header from "../components/Header/Header.js";
 import SearchInput from "../components/SearchInput/SearchInput.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
 const accueil = MiniReact.createElement(Link, {
-    title: "Accueil",
-    classes: "text-sm font-semibold leading-6 text-gray-900",
-    href: "/page2",
+  value: "Accueil",
+  class: "text-sm font-semibold leading-6 text-gray-900",
+  href: "/page2",
 });
 
 const button = MiniReact.createElement(Button, {
@@ -44,18 +45,37 @@ const footer = MiniReact.createElement(Footer);
 
 const searchInput = MiniReact.createElement(SearchInput);
 
+const navLinks = [
+  {
+    title: "Accueil",
+    class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
+    href: "/",
+  },
+  {
+    title: "Evenements",
+    class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
+    href: "#",
+  }
+]
+
+const header = MiniReact.createElement(Header, {
+    links: navLinks,
+  },
+);
+
 export default {
-    type: "div",
-    children: [
-        BrowserLink({
-            title: "Page 2",
-            to: "/page2",
-        }),
-        button,
-        accueil,
-        image,
-        eventCard,
-        searchInput,
-        footer
-    ],
+  type: "div",
+  children: [
+    // BrowserLink({
+    //   title: "Page 2",
+    //   to: "/page2",
+    // }),
+    header,
+    button,
+    accueil,
+    image,
+    eventCard,
+    searchInput,
+    footer
+  ],
 };
