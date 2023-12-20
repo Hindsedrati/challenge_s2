@@ -39,6 +39,16 @@ const eventCard = MiniReact.createElement(EventCard, {
     image: "img/path" // Remplacez par le chemin de votre image.
 });
 
+
+const buttonModal = MiniReact.createElement(Button, {
+    title: "toggle modal",
+    'data-modal-target': "default-modal",
+    'data-modal-toggle': "default-modal",
+    class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+    onClick: () => console.log("Toggle modal"),
+});
+
+
 const footer = MiniReact.createElement(Footer)
 
 export default {
@@ -52,6 +62,7 @@ export default {
         accueil,
         image,
         eventCard,
+        buttonModal,
         footer
     ],
 };
