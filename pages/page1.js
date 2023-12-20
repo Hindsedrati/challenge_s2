@@ -6,6 +6,7 @@ import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
 import Header from "../components/Header/Header.js";
+import SearchInput from "../components/SearchInput/SearchInput.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
@@ -40,7 +41,9 @@ const eventCard = MiniReact.createElement(EventCard, {
     image: "img/path" // Remplacez par le chemin de votre image.
 });
 
-const footer = MiniReact.createElement(Footer)
+const footer = MiniReact.createElement(Footer);
+
+const searchInput = MiniReact.createElement(SearchInput);
 
 const navLinks = [
   {
@@ -72,6 +75,7 @@ export default {
     accueil,
     image,
     eventCard,
+    searchInput,
     footer
   ],
 };

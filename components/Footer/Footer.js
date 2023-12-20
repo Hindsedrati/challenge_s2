@@ -8,14 +8,19 @@ const Footer = () => {
         MiniReact.createElement('div', {
                 class: "flex justify-between items-center container w-full",
             },
-            MiniReact.createElement(Image, {
-                src: "../../assets/logo.svg",
-                alt: "logo",
-                class: ""
-            }),
+            MiniReact.createElement("a", {
+                    href: "/"
+                },
+                MiniReact.createElement(Image, {
+                    src: "../../assets/logo.svg",
+                    alt: "logo",
+                    class: ""
+                }),
+            ),
+
             MiniReact.createElement("span", {
                     class: "text-white text-sm font-medium",
-            },
+                },
                 "© 2023 Tous droits réservés")
         )
     );
