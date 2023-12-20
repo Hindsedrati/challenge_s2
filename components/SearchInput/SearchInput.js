@@ -33,11 +33,10 @@ const SearchInput = (props) => {
                     class: "absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none",
                 },
                 MiniReact.createElement(
-                    Image,
+                    "i",
                     {
-                        src: "assets/search.svg",
                         alt: "search",
-                        class: "w-4 h-4",
+                        class: "fa-solid fa-magnifying-glass",
                     },
                 )
             ),
