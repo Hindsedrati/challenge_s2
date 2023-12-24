@@ -1,7 +1,9 @@
-import Component from "../components/Component.js";
+import Component from "./Component.js";
 
 const MiniReact = {
-  createElement: (type, props, ...children) => {
+  componentInstances: new WeakMap(),
+
+  createElement: (type, props = {}, ...children) => {
     const processedChildren = children.map((child) =>
       typeof child === "object" ? child : MiniReact.createTextElement(child)
     );
