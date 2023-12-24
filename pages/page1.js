@@ -7,6 +7,7 @@ import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
 import Header from "../components/Header/Header.js";
 import SearchInput from "../components/SearchInput/SearchInput.js";
+import Carousel from "../components/Carousel/Carousel.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
@@ -45,6 +46,8 @@ const footer = MiniReact.createElement(Footer);
 
 const searchInput = MiniReact.createElement(SearchInput);
 
+const carousel = MiniReact.createElement(Carousel);
+
 const navLinks = [
   {
     title: "Accueil",
@@ -76,6 +79,7 @@ export default {
     image,
     eventCard,
     searchInput,
+    carousel,
     footer
   ],
 };
