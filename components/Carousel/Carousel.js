@@ -32,10 +32,6 @@ class Carousel extends Component {
         "../assets/logo.svg",
         "../ceo.png",
         "../assets/logo.svg",
-        "../assets/test.jpeg",
-        "../assets/test1.jpeg",
-        "../assets/test2.jpeg",
-        "../assets/test3.jpeg",
         ];
         this.state = {
         count: 0,
