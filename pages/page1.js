@@ -5,12 +5,15 @@ import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
+import Header from "../components/Header/Header.js";
+import SearchInput from "../components/SearchInput/SearchInput.js";
+import Modal from "../components/Modal/Modal.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
 const accueil = MiniReact.createElement(Link, {
-    title: "Accueil",
-    classes: "text-sm font-semibold leading-6 text-gray-900",
+    value: "Accueil",
+    class: "text-sm font-semibold leading-6 text-gray-900",
     href: "/page2",
 });
 
@@ -39,30 +42,58 @@ const eventCard = MiniReact.createElement(EventCard, {
     image: "img/path" // Remplacez par le chemin de votre image.
 });
 
+const footer = MiniReact.createElement(Footer);
+
+const searchInput = MiniReact.createElement(SearchInput);
+
+const navLinks = [
+    {
+        title: "Accueil",
+        class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
+        href: "/",
+    },
+    {
+        title: "Evenements",
+        class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
+        href: "#",
+    }
+]
+
+const header = MiniReact.createElement(Header, {
+    links: navLinks,
+},
+);
+
+// const modal = MiniReact.createElement(Modal);
 
 const buttonModal = MiniReact.createElement(Button, {
     title: "toggle modal",
-    'data-modal-target': "default-modal",
-    'data-modal-toggle': "default-modal",
+    // 'data-modal-target': "default-modal",
+    // 'data-modal-toggle': "default-modal",
     class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-    onClick: () => console.log("Toggle modal"),
+    onClick: () => {
+        // Créez l'élément Modal ici et attachez-le au DOM
+        const modal = MiniReact.createElement(Modal);
+        // Attachez le modal à votre document ou à un élément spécifique
+        document.body.appendChild(modal);
+    },
 });
-
-
-const footer = MiniReact.createElement(Footer)
 
 export default {
     type: "div",
     children: [
-        BrowserLink({
-            title: "Page 2",
-            to: "/page2",
-        }),
-        button,
-        accueil,
-        image,
-        eventCard,
+        // BrowserLink({
+        //   title: "Page 2",
+        //   to: "/page2",
+        // }),
+        // header,
+        // button,
+        // accueil,
+        // image,
+        // eventCard,
+        // searchInput,
         buttonModal,
-        footer
+        // modal,
+        // footer
     ],
 };
