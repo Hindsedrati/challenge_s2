@@ -1,26 +1,15 @@
 import EventList from "../components/Event/EventList.js";
 import Header from "../components/Header/Header.js";
 import MiniReact from "../core/MiniReact.js";
-
-const navLinks = [
-    {
-        title: "Accueil",
-        class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
-        href: "/",
-    },
-    {
-        title: "Evenements",
-        class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent",
-        href: "#",
-    }
-]
+import navlinks from "../utils/navlinks.js";
 
 
 const header = MiniReact.createElement(Header, {
-        links:navLinks,
+        links:navlinks,
     },
 );
-const cards = [{
+const cards = [
+    {
     "link": "https://pinterest.com/morbi/non.js?ornare=quis&consequat=augue&lectus=luctus&in=tincidunt&est=nulla&risus=mollis&auctor=molestie&sed=lorem&tristique=quisque&in=ut&tempus=erat&sit=curabitur&amet=gravida&sem=nisi&fusce=at&consequat=nibh&nulla=in&nisl=hac&nunc=habitasse&nisl=platea&duis=dictumst&bibendum=aliquam&felis=augue&sed=quam&interdum=sollicitudin&venenatis=vitae&turpis=consectetuer&enim=eget&blandit=rutrum&mi=at&in=lorem&porttitor=integer&pede=tincidunt&justo=ante&eu=vel&massa=ipsum&donec=praesent&dapibus=blandit&duis=lacinia&at=erat&velit=vestibulum&eu=sed&est=magna&congue=at&elementum=nunc&in=commodo&hac=placerat&habitasse=praesent&platea=blandit&dictumst=nam&morbi=nulla&vestibulum=integer&velit=pede&id=justo&pretium=lacinia&iaculis=eget&diam=tincidunt&erat=eget&fermentum=tempus",
     "target": "_blank",
     "date": "7/22/2024",
