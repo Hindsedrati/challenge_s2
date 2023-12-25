@@ -6,16 +6,16 @@ const EventCard = (props) => {
         {
             href: props.link,
             target: props.target,
-            class: "inline-block",
+            class: "inline-block bg-white rounded-3xl w-full md:max-w-sm p-4 md:p-8 h-80",
         },
         MiniReact.createElement(
             "div",
             {
-                class: "bg-white rounded-3xl w-full md:max-w-sm p-4 md:p-8 h-82",
+                class: "h-full  flex flex-col justify-between",
             },
             MiniReact.createElement(
                 "div",
-                {class: "flex"},
+                {class: "flex "},
                 MiniReact.createElement(
                     "div",
                     {class: "flex-1"},
@@ -38,8 +38,18 @@ const EventCard = (props) => {
             ),
             MiniReact.createElement(
                 "div",
-                {class: "my-4"},
-                props.description
+                {
+                    class: "my-4 rounded-3xl h-full flex flex-col",
+                    style:{
+                        background: `linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(255, 255, 255, 1)),url(${props.image}) no-repeat center center`,
+                        backgroundSize: "cover",
+                    }
+                },
+                MiniReact.createElement('span',{
+                    class: "mt-auto line-clamp-3 px-2"
+                },
+                    props.description
+                )
             ),
             MiniReact.createElement(
                 "div",
@@ -48,7 +58,7 @@ const EventCard = (props) => {
                     "i",
                     {class: "fa-solid fa-map-location-dot"},
                 ),
-                MiniReact.createElement("span", {class: "uppercase"},
+                MiniReact.createElement("span", {class: "uppercase mt-auto"},
                     props.location
                 ),
             )

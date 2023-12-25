@@ -1,5 +1,4 @@
-import { BrowserLink } from "../components/BrowserRouter.js";
-import EventCard from "../components/EventCard/EventCard.js";
+import EventCard from "../components/Event/EventCard.js";
 import Footer from "../components/Footer/Footer.js";
 import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
