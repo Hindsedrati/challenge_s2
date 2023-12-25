@@ -28,7 +28,7 @@ export default {
   type: "div",
   children: [
     BrowserLink({
-      title: "Page 2",
+      title: "Page 2 test",
       to: "/page2",
     }),
     {
