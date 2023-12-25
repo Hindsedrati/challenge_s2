@@ -1,24 +1,31 @@
-function htmlToJson(element) {
-    let obj = { tag: element.tagName.toLowerCase() };
-    if (element.attributes.length > 0) {
-        obj.attributes = Array.from(element.attributes).reduce((attrs, attribute) => {
-            attrs[attribute.name] = attribute.value;
-            return attrs;
-        }, {});
-    }
-    if (element.childElementCount > 0) {
-        obj.children = Array.from(element.children).map(child => htmlToJson(child));
-    } else if (element.textContent) {
-        obj.textContent = element.textContent;
-    }
-    return obj;
-}
+import Component from "./Component.js";
 
-export const createElement = function createElement(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const json = htmlToJson(doc.body.firstChild);
-    return json;
+const MiniReact = {
+  componentInstances: new WeakMap(),
+
+  createElement: (type, props = {}, ...children) => {
+    const processedChildren = children.map((child) =>
+      typeof child === "object" ? child : MiniReact.createTextElement(child)
+    );
+
+    if (type.prototype instanceof Component) {
+      return new type({ ...props, children: processedChildren }).render();
+    } else if (typeof type === "function") {
+      return type({ ...props, children: processedChildren });
+    } else {
+      return {
+        type,
+        children: processedChildren,
+        props: { ...props },
+      };
+    }
+  },
+  createTextElement: (text) => {
+    return {
+      type: "TEXT_NODE",
+      content: text,
+    };
+  },
 };
 
-export class Component { }
+export default MiniReact;
