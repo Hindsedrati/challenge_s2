@@ -64,20 +64,20 @@ const header = MiniReact.createElement(Header, {
 },
 );
 
-// const modal = MiniReact.createElement(Modal);
+const modal = MiniReact.createElement(Modal);
 
-const buttonModal = MiniReact.createElement(Button, {
-    title: "toggle modal",
-    // 'data-modal-target': "default-modal",
-    // 'data-modal-toggle': "default-modal",
-    class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
-    onClick: () => {
-        // Créez l'élément Modal ici et attachez-le au DOM
-        const modal = MiniReact.createElement(Modal);
-        // Attachez le modal à votre document ou à un élément spécifique
-        document.body.appendChild(modal);
-    },
-});
+// const buttonModal = MiniReact.createElement(Button, {
+//     title: "toggle modal",
+//     // 'data-modal-target': "default-modal",
+//     // 'data-modal-toggle': "default-modal",
+//     class: "block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+//     onClick: () => {
+//         // Créez l'élément Modal ici et attachez-le au DOM
+//         const modal = MiniReact.createElement(Modal);
+//         // Attachez le modal à votre document ou à un élément spécifique
+//         document.body.appendChild(modal);
+//     },
+// });
 
 export default {
     type: "div",
@@ -86,14 +86,14 @@ export default {
         //   title: "Page 2",
         //   to: "/page2",
         // }),
-        // header,
-        // button,
-        // accueil,
-        // image,
-        // eventCard,
-        // searchInput,
-        buttonModal,
-        // modal,
-        // footer
+        header,
+        button,
+        accueil,
+        image,
+        eventCard,
+        searchInput,
+        // buttonModal,
+        modal,
+        footer
     ],
 };
