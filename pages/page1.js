@@ -7,6 +7,7 @@ import Image from "../components/Image/Image.js";
 import Header from "../components/Header/Header.js";
 import SearchInput from "../components/SearchInput/SearchInput.js";
 import navlinks from "../utils/navlinks.js";
+import Subsection from "../components/Subsection/Subsection.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
@@ -50,10 +51,13 @@ const header = MiniReact.createElement(Header, {
   },
 );
 
+const subsection = MiniReact.createElement(Subsection);
+
 export default {
   type: "div",
   children: [
     header,
+    subsection,
     button,
     accueil,
     image,
