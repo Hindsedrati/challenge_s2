@@ -19,7 +19,7 @@ const Header = (props) => {
             style: {
                 boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.25)"
             }
-        }, 
+        },
         MiniReact.createElement(
             "nav",
             { 
@@ -62,9 +62,65 @@ const Header = (props) => {
                             )
                         })
                     )
-                )
+                ),
+                MiniReact.createElement("div",{
+                    class: "flex items-center justify-center md:hidden border border-2 border-black rounded-full w-10 h-10",
+                    },
+                    MiniReact.createElement("i",{
+                    //notification
+                    class: "fa-solid fa-bell text-xl  cursor-pointer",
+                }))
             )
         ),
+        MiniReact.createElement("nav",{
+            class:"container shadow-md h-[80px] bg-white flex items-center justify-center md:hidden fixed bottom-0 left-0 right-0 z-10",
+        },
+            ...props.links.map((link,index) => {
+                if(index === 0){
+                    return MiniReact.createElement(
+                        "div",
+                        {
+                            class: "flex items-center justify-center flex-col space-y-1 bg-[#E8D4A0]/50 text-gray-800 flex-1 w-full h-full ",
+                        },
+                        MiniReact.createElement(Link,
+                            {
+                                class: "",
+                                href: link.href,
+                                value: MiniReact.createElement("i",{
+                                    class: link.icon + " text-xl",
+                                }),
+                            }
+                        ),
+                        MiniReact.createElement("span",{
+                                class: "",
+                            },
+                            link.title
+                        )
+                    )
+                } else {
+                    return MiniReact.createElement(
+                        "div",
+                        {
+                            class: "flex items-center justify-center flex-col space-y-1 text-gray-400 px-4 py-2 rounded-xl flex-1",
+                        },
+                        MiniReact.createElement(Link,
+                            {
+                                class: "",
+                                href: link.href,
+                                value: MiniReact.createElement("i",{
+                                    class: link.icon + " text-xl",
+                                }),
+                            }
+                        ),
+                        MiniReact.createElement("span",{
+                                class: "",
+                            },
+                            link.title
+                        )
+                    )
+                }
+            })
+        )
     );
 };
 
