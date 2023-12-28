@@ -8,8 +8,7 @@ class Subsection extends Component {
         let element = MiniReact.createElement(
             "div",
             {
-                class: "text-sm font-medium text-center text-black-500 border-b border-black-200",
-                style: { background: "#EEE0B1" }
+                class: "text-sm font-medium text-center text-black-500 border-b border-black-200 bg-[#EEE0B1]",
             },
             MiniReact.createElement(
                 "ul",
@@ -24,8 +23,7 @@ class Subsection extends Component {
                     MiniReact.createElement(
                         Link,
                         {
-                            class: "inline-block p-4 text-black-600 border-b-2 border-black-600 rounded-t-lg active dark:text-black-500 dark:border-black-500",
-                            style: { borderBottomColor: "#669D4B" },
+                            class: "inline-block p-4 text-black-600 border-b-[#669D4B] border-black-600 rounded-t-lg active dark:text-black-500 dark:border-black-500",
                             href: "#",
                             value: "Evènements",
                             "aria-current": "page"
