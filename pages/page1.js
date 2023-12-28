@@ -45,10 +45,9 @@ const footer = MiniReact.createElement(Footer);
 
 const searchInput = MiniReact.createElement(SearchInput);
 
-const header = MiniReact.createElement(Header, {
-        links: navlinks,
-    },
-);
+const header = MiniReact.createElement(Header,{
+    links: navlinks,
+})
 
 export default {
     type: "div",

@@ -4,10 +4,9 @@ import MiniReact from "../core/MiniReact.js";
 import navlinks from "../utils/navlinks.js";
 
 
-const header = MiniReact.createElement(Header, {
-        links:navlinks,
-    },
-);
+const header = MiniReact.createElement(Header,{
+    links: navlinks,
+})
 const cards = [
     {
     "link": "https://pinterest.com/morbi/non.js?ornare=quis&consequat=augue&lectus=luctus&in=tincidunt&est=nulla&risus=mollis&auctor=molestie&sed=lorem&tristique=quisque&in=ut&tempus=erat&sit=curabitur&amet=gravida&sem=nisi&fusce=at&consequat=nibh&nulla=in&nisl=hac&nunc=habitasse&nisl=platea&duis=dictumst&bibendum=aliquam&felis=augue&sed=quam&interdum=sollicitudin&venenatis=vitae&turpis=consectetuer&enim=eget&blandit=rutrum&mi=at&in=lorem&porttitor=integer&pede=tincidunt&justo=ante&eu=vel&massa=ipsum&donec=praesent&dapibus=blandit&duis=lacinia&at=erat&velit=vestibulum&eu=sed&est=magna&congue=at&elementum=nunc&in=commodo&hac=placerat&habitasse=praesent&platea=blandit&dictumst=nam&morbi=nulla&vestibulum=integer&velit=pede&id=justo&pretium=lacinia&iaculis=eget&diam=tincidunt&erat=eget&fermentum=tempus",
