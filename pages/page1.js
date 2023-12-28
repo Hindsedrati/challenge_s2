@@ -11,9 +11,9 @@ import navlinks from "../utils/navlinks.js";
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
 const accueil = MiniReact.createElement(Link, {
-  value: "Accueil",
-  class: "text-sm font-semibold leading-6 text-gray-900",
-  href: "/page2",
+    value: "Accueil",
+    class: "text-sm font-semibold leading-6 text-gray-900",
+    href: "/page2",
 });
 
 const button = MiniReact.createElement(Button, {
@@ -46,19 +46,19 @@ const footer = MiniReact.createElement(Footer);
 const searchInput = MiniReact.createElement(SearchInput);
 
 const header = MiniReact.createElement(Header, {
-    links: navlinks,
-  },
+        links: navlinks,
+    },
 );
 
 export default {
-  type: "div",
-  children: [
-    header,
-    button,
-    accueil,
-    image,
-    eventCard,
-    searchInput,
-    footer
-  ],
+    type: "div",
+    children: [
+        header,
+        eventCard,
+        button,
+        accueil,
+        image,
+        searchInput,
+        footer
+    ],
 };

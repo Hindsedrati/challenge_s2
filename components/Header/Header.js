@@ -11,6 +11,40 @@ const image = MiniReact.createElement(
     }
 )
 
+const notification = [
+    {
+        title: "Concert en Direct !",
+        description: "Rejoignez-nous pour l'ouverture du festival de musique d'été ce soir à 20h.",
+        date: "Il y a 2 heures",
+        type: "success",
+    },
+    {
+        title: "Vernissage Exposition d'Art",
+        description: "Découvrez l'art contemporain à la Galerie du Centre-Ville. Débute ce samedi.",
+        date: "Il y a 1 jour",
+        type: "info",
+    },
+    {
+        title: "Festival de Cuisine de Rue",
+        description: "Goûtez aux meilleurs plats de rue du monde. Le voyage culinaire commence demain !",
+        date: "Il y a 3 heures",
+        type: "warning",
+    },
+    {
+        title: "Annonce du Marathon",
+        description: "Le marathon est annulé cette année. Nous vous donnons rendez-vous l'année prochaine.",
+        date: "Il y a 4 jours",
+        type: "danger",
+    },
+    {
+        title: "Alerte Première de Film",
+        description: "Soyez les premiers à voir le film le plus attendu de l'année. Premières ce week-end.",
+        date: "Il y a 5 heures",
+        type: "info",
+    }
+];
+
+
 const Header = (props) => {
     return MiniReact.createElement(
         "header",
@@ -22,8 +56,8 @@ const Header = (props) => {
         },
         MiniReact.createElement(
             "nav",
-            { 
-                class: "container border-gray-200" 
+            {
+                class: "container border-gray-200"
             },
             MiniReact.createElement(
                 "div",
@@ -63,20 +97,70 @@ const Header = (props) => {
                         })
                     )
                 ),
-                MiniReact.createElement("div",{
-                    class: "flex items-center justify-center md:hidden border border-2 border-black rounded-full w-10 h-10",
+                MiniReact.createElement("div", {
+                        class: "flex items-center justify-center md:hidden border border-2 border-black rounded-full w-10 h-10 relative",
                     },
-                    MiniReact.createElement("i",{
-                    //notification
-                    class: "fa-solid fa-bell text-xl  cursor-pointer",
-                }))
+                    MiniReact.createElement("i", {
+                            //notification
+                            class: "fa-solid fa-bell text-xl  cursor-pointer",
+                            id: "notification",
+                        }
+                    ),
+                    MiniReact.createElement("div", {
+                            class: "absolute right-0 h-0  w-[250px] h-auto bg-red-500 shadow-md z-10 rounded-md flex flex-col bg-white divide-y divide-y-gray-100 overflow-y-auto -top-[1500px] opacity-0 transition-all duration-300 ease-in-out",
+                            id: "notification-content",
+                        },
+                        ...notification.map((notif) => {
+                            let typeOfNotif = notif.type;
+                            let notifColor;
+                            switch (typeOfNotif) {
+                                case "success":
+                                    notifColor = "green-500";
+                                    break;
+                                case "info":
+                                    notifColor = "blue-500";
+                                    break;
+                                case "warning":
+                                    notifColor = "yellow-500";
+                                    break;
+                                case "danger":
+                                    notifColor = "red-500";
+                                    break;
+                                default:
+                                    notifColor = "gray-500";
+                                    break;
+                            }
+                            return MiniReact.createElement("div", {
+                                    //detect type of notification
+                                    class: `flex items-center justify-between px-4 py-2 border-l-[6px] border-l-${notifColor} border-opacity-50 py-4 hover:bg-gray-100 transition duration-300 ease-in-out flex flex-col`,
+                                },
+                                MiniReact.createElement("h3", {
+                                        class: "font-semibold w-full",
+                                    },
+                                    notif.title
+                                ),
+                                MiniReact.createElement("p", {
+                                        class: "text-sm w-full",
+                                    },
+                                    notif.description
+                                ),
+
+                                MiniReact.createElement("span", {
+                                        class: "text-xs text-gray-400 text-right w-full",
+                                    },
+                                    notif.date
+                                ),
+                            )
+                        }),
+                    )
+                )
             )
         ),
-        MiniReact.createElement("nav",{
-            class:"container shadow-md h-[80px] bg-white flex items-center justify-center md:hidden fixed bottom-0 left-0 right-0 z-10",
-        },
-            ...props.links.map((link,index) => {
-                if(index === 0){
+        MiniReact.createElement("nav", {
+                class: "container shadow-md h-[80px] bg-white flex items-center justify-center md:hidden fixed bottom-0 left-0 right-0 z-10",
+            },
+            ...props.links.map((link, index) => {
+                if (index === 0) {
                     return MiniReact.createElement(
                         "div",
                         {
@@ -86,12 +170,12 @@ const Header = (props) => {
                             {
                                 class: "",
                                 href: link.href,
-                                value: MiniReact.createElement("i",{
+                                value: MiniReact.createElement("i", {
                                     class: link.icon + " text-xl",
                                 }),
                             }
                         ),
-                        MiniReact.createElement("span",{
+                        MiniReact.createElement("span", {
                                 class: "",
                             },
                             link.title
@@ -107,12 +191,12 @@ const Header = (props) => {
                             {
                                 class: "",
                                 href: link.href,
-                                value: MiniReact.createElement("i",{
+                                value: MiniReact.createElement("i", {
                                     class: link.icon + " text-xl",
                                 }),
                             }
                         ),
-                        MiniReact.createElement("span",{
+                        MiniReact.createElement("span", {
                                 class: "",
                             },
                             link.title
@@ -120,6 +204,22 @@ const Header = (props) => {
                     )
                 }
             })
+        ),
+        MiniReact.createElement("script", {},
+            `
+            const notification = document.getElementById("notification");
+            const notificationContent = document.getElementById("notification-content");
+            //first come to place then opacity 1
+            
+            notification.addEventListener("click", () => {
+                notificationContent.classList.toggle("top-10");
+                //wait for the transition to end to change opacity
+                setTimeout(() => {
+                notificationContent.classList.toggle("opacity-0");
+                }, 175);
+            });
+            
+            `
         )
     );
 };
