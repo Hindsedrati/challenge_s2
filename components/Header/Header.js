@@ -35,12 +35,6 @@ const notification = [
         description: "Le marathon est annulé cette année. Nous vous donnons rendez-vous l'année prochaine.",
         date: "Il y a 4 jours",
         type: "danger",
-    },
-    {
-        title: "Alerte Première de Film",
-        description: "Soyez les premiers à voir le film le plus attendu de l'année. Premières ce week-end.",
-        date: "Il y a 5 heures",
-        type: "info",
     }
 ];
 
@@ -105,6 +99,11 @@ const Header = (props) => {
                             class: "fa-solid fa-bell text-xl  cursor-pointer",
                             id: "notification",
                         }
+                    ),
+                    MiniReact.createElement("span", {
+                            class: "absolute -top-2 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs text-white flex items-center justify-center font-semibold",
+                        },
+                        notification.length
                     ),
                     MiniReact.createElement("div", {
                             class: "absolute right-0 h-0  w-[250px] h-auto bg-red-500 shadow-md z-10 rounded-md flex flex-col bg-white divide-y divide-y-gray-100 overflow-y-auto -top-[1500px] opacity-0 transition-all duration-300 ease-in-out",
