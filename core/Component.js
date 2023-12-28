@@ -4,9 +4,13 @@ export default class Component {
   constructor(props = {}) {
     this.props = props;
     this.state = {};
-    this._pendingState = {};
+    this.instanceKeyCounter;
     this._dom = null;
-    this._instance;
+    this.instanceKeyCounter = 0;
+  }
+
+  generateUniqueKey() {
+    return Symbol(`__uniqueKey_${this.instanceKeyCounter++}`);
   }
 
   /**
@@ -29,6 +33,7 @@ export default class Component {
     this._pendingState = null;
 
     let newElement = this.render();
+
     MiniReactDom.updateElement(oldElement, newElement);
   }
 
