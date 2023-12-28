@@ -4,11 +4,14 @@ export default class Component {
   constructor(props = {}) {
     this.props = props;
     this.state = {};
-    this.instanceKeyCounter;
     this._dom = null;
     this.instanceKeyCounter = 0;
   }
 
+  /**
+   *
+   * @returns A unique identifier that is used to track instances
+   */
   generateUniqueKey() {
     return Symbol(`__uniqueKey_${this.instanceKeyCounter++}`);
   }
