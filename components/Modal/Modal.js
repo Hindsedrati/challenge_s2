@@ -28,29 +28,29 @@ class Modal extends Component {
                         console.log("click modal")
                         this.setState({
                             show: !this.state.show,
-                            modalOpacity: 100,
+                            modalOpacity: 100, // je voulais mettre une variation d'opacité en state pour la récupéré dans la classe (un des commentaire de la div id=default-modal")
                         })
                     }
 
                 }
             )
 
-                /* remove dark, aria hidden, id pas bons, tab index - fini
+                /*
+                Tache:
                 Fondu - en cours
-                Ombre portée - en cours
-                Au milieu du parent - fini
-                Fond grisé autour - fini mais blanchâtre
-                éventuellement fermer la modale si on appuie autour 
-                croix font awesome
-                contenu dynamique?
+                éventuellement fermer la modale si on appuie autour - non fait
+                contenu dynamique - en cours
+                Police titre modal - en cours --> j'ai importé la police dans index.html et créer un fichier de config
                 */
+
+
 
                 : MiniReact.createElement(
                     // return MiniReact.createElement(
                     "div",
                     {
                         id: "default-modal",
-                        class: "transition-opacity duration-1000 ease-in opacity-0 opacity-100 flex items-center justify-center backdrop-blur-none bg-white/30 bg-grey:800 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full",
+                        class: "transition-opacity duration-1000 ease-in opacity-0 opacity-100 flex items-center justify-center bg-black/40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full",
                         // class: "drop-shadow-x overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full",
                         // class: "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full transition-opacity transition-property:opacity transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1) transition-duration: 150ms",
                         // class: `transition-opacity opacity-${this.state.modalOpacity}`, // Ajoutez les classes de transition et d'opacité
@@ -74,71 +74,75 @@ class Modal extends Component {
                             MiniReact.createElement(
                                 "div",
                                 {
-                                    class: "flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+                                    id: "container-header",
+                                    class: "flex items-center justify-between p-4 md:p-5 rounded-t"
                                 },
 
                                 MiniReact.createElement(
                                     "h3",
                                     {
-                                        class: "text-xl font-semibold text-gray-900"
+                                        // class: "Raleway text-xl font-semibold text-gray-900"
+                                        class: "text-gray-600 body-font font-poppins"
                                     },
+                                    // props.data.title,
+                                    "Header title",
+                                ),
 
-                                    MiniReact.createElement(
-                                        "h3",
-                                        {
-                                            class: "text-xl font-semibold text-gray-900"
-                                        },
-                                        "Text Header"
-                                    ),
+                                MiniReact.createElement(
+                                    Button,
+                                    {
+                                        type: "button",
+                                        title: MiniReact.createElement(
+                                            "i",
+                                            {
+                                                class: "fa-solid fa-xmark",
+                                            },
+                                        ),
+                                        class: "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center",
+                                        onClick: () => {
+                                            console.log("click close")
+                                            this.setState({
+                                                show: !this.state.show
+                                            })
+                                        }
+                                    },
+                                ),
+                            ),
 
-                                    MiniReact.createElement(
-                                        Button,
-                                        {
-                                            type: "button",
-                                            title: MiniReact.createElement(
-                                                "i",
-                                                {
-                                                    class: "fa-solid fa-xmark",
-                                                },
-                                            ),
-                                            class: "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center",
-                                            onClick: () => {
-                                                console.log("click close")
-                                                this.setState({
-                                                    show: !this.state.show
-                                                })
-                                            }
-                                        },
+                            MiniReact.createElement(
+                                "div",
+                                {
+                                    id: "usefull-info",
+                                    // class: "flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+                                    class: "flex items-start flex-col space-y-4 p-4 border-b"
+                                },
 
-                                        // MiniReact.createElement(
-                                        //     "svg",
-                                        //     {
-                                        //         class: "w-3 h-3",
-                                        //         xmlns: "http://www.w3.org/2000/svg",
-                                        //         fill: "none",
-                                        //         viewBox: "0 0 14 14"
-                                        //     },
+                                MiniReact.createElement(
+                                    "p",
+                                    {
+                                        // class: "Raleway text-xl font-semibold text-gray-900"
+                                        class: "text-gray-600 body-font font-poppins"
+                                    },
+                                    "Test 1 "
+                                ),
 
-                                        //     MiniReact.createElement(
-                                        //         "path",
-                                        //         {
-                                        //             stroke: "button",
-                                        //             'stroke-linecap': "round",
-                                        //             'stroke-linejoin': "round",
-                                        //             'stroke-width': "2",
-                                        //             d: "m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                                        //         },
-                                        //     ),
+                                MiniReact.createElement(
+                                    "p",
+                                    {
+                                        // class: "Raleway text-xl font-semibold text-gray-900"
+                                        class: "text-gray-600 body-font font-poppins"
+                                    },
+                                    "Test 2 "
+                                ),
 
-                                        //     MiniReact.createElement(
-                                        //         "path",
-                                        //         {
-                                        //             class: "sr-only"
-                                        //         },
-                                        //         "close modal"
-                                        //     ),
-                                    ),
-                                )
+                                MiniReact.createElement(
+                                    "p",
+                                    {
+                                        // class: "Raleway text-xl font-semibold text-gray-900"
+                                        class: "text-gray-600 body-font font-poppins"
+                                    },
+                                    "Test 3 "
+                                ),
                             ),
 
                             // Modal Body
