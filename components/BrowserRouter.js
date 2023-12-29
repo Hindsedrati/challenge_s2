@@ -1,4 +1,5 @@
 import MiniReactDom from "../core/MiniReactDom.js";
+import MiniReact from "../core/MiniReact.js";
 
 class BrowserRouter {
   constructor(routes, rootElement) {
@@ -30,7 +31,7 @@ class BrowserRouter {
   }
 
   render() {
-    const component = this.currentRoute.component();
+    const component = MiniReact.createElement(this.currentRoute.component);
     const domContent = MiniReactDom.renderStructure(component);
     this.rootElement.innerHTML = "";
     this.rootElement.appendChild(domContent);
