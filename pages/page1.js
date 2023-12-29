@@ -1,5 +1,4 @@
-import { BrowserLink } from "../components/BrowserRouter.js";
-import EventCard from "../components/EventCard/EventCard.js";
+import EventCard from "../components/Event/EventCard.js";
 import Footer from "../components/Footer/Footer.js";
 import MiniReact from "../core/MiniReact.js";
 import Button from "../components/button/Button.js";
@@ -8,6 +7,7 @@ import Image from "../components/Image/Image.js";
 import Header from "../components/Header/Header.js";
 import SearchInput from "../components/SearchInput/SearchInput.js";
 import Carousel from "../components/Carousel/Carousel.js";
+import navlinks from "../utils/navlinks.js";
 
 const data = JSON.parse(localStorage.getItem("data") || "{}");
 
@@ -62,17 +62,13 @@ const navLinks = [
 ]
 
 const header = MiniReact.createElement(Header, {
-    links: navLinks,
+    links: navlinks,
   },
 );
 
 export default {
   type: "div",
   children: [
-    // BrowserLink({
-    //   title: "Page 2",
-    //   to: "/page2",
-    // }),
     header,
     button,
     accueil,

@@ -15,7 +15,7 @@ const Header = (props) => {
     return MiniReact.createElement(
         "header",
         {
-            class: "h-[159px] bg-[#FFFFFF] flex items-center justify-center",
+            class: "h-[159px] bg-[#FFFFFF] flex items-center justify-center mb-4",
             style: {
                 boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.25)"
             }
