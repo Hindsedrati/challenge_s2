@@ -4,6 +4,7 @@ import Footer from "../components/Footer/Footer.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
+import Carousel from "../components/Carousel/Carousel.js";
 
 const accueil = MiniReact.createElement(Link, {
   value: "Accueil",
@@ -36,6 +37,16 @@ const eventCard = MiniReact.createElement(EventCard, {
   image: "img/path", // Remplacez par le chemin de votre image.
 });
 
+const carousel = MiniReact.createElement(Carousel, {
+  images: [
+    "../ceo.png",
+    "../assets/logo.svg",
+    "../ceo.png",
+    "../assets/logo.svg",
+    "../assets/concert.png",
+  ],
+});
+
 const footer = MiniReact.createElement(Footer);
 
 const HomePage = () => {
@@ -51,6 +62,7 @@ const HomePage = () => {
     accueil,
     image,
     eventCard,
+    carousel,
     footer
   );
 };
