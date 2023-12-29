@@ -4,9 +4,16 @@ export default class Component {
   constructor(props = {}) {
     this.props = props;
     this.state = {};
-    this._pendingState = {};
     this._dom = null;
-    this._instance;
+    this.instanceKeyCounter = 0;
+  }
+
+  /**
+   *
+   * @returns A unique identifier that is used to track instances
+   */
+  generateUniqueKey() {
+    return Symbol(`__uniqueKey_${this.instanceKeyCounter++}`);
   }
 
   /**
@@ -29,6 +36,7 @@ export default class Component {
     this._pendingState = null;
 
     let newElement = this.render();
+
     MiniReactDom.updateElement(oldElement, newElement);
   }
 
