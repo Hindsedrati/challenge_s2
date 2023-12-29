@@ -43,6 +43,18 @@ const MiniReact = {
       content: text,
     };
   },
+
+  getUrlParameters: function () {
+    const search = window.location.search;
+
+    const params = new URLSearchParams(search);
+    const result = {};
+
+    for (const [key, value] of params) {
+      result[key] = encodeURIComponent(value);
+    }
+    return result;
+  },
 };
 
 export default MiniReact;
