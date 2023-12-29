@@ -15,7 +15,7 @@ const Link = (props) => {
       },
     },
 
-    props.title
+    props.value
   );
 };
 

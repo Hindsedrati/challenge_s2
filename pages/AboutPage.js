@@ -7,7 +7,7 @@ const AboutPage = () => {
     "div",
     { class: "flex justify-center align-center gap-10" },
     MiniReact.createElement("p", null, "About page"),
-    parameters.page
+    parameters.event
   );
 };
 

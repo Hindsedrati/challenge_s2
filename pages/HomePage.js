@@ -1,12 +1,12 @@
 import MiniReact from "../core/MiniReact.js";
-import EventCard from "../components/EventCard/EventCard.js";
+import EventCard from "../components/Event/Card.js";
 import Footer from "../components/Footer/Footer.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
 
 const accueil = MiniReact.createElement(Link, {
-  title: "Accueil",
+  value: "Accueil",
   classes: "text-sm font-semibold leading-6 text-gray-900",
   href: "/page2",
 });
@@ -43,7 +43,7 @@ const HomePage = () => {
     "div",
     null,
     MiniReact.createElement(Link, {
-      title: "Accueil",
+      value: "Accueil",
       classes: "text-sm font-semibold leading-6 text-gray-900",
       href: "/page2",
     }),
