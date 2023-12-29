@@ -4,8 +4,9 @@ const Button = (props) => {
   return MiniReact.createElement(
     "button",
     {
+      type: props.type,
       class: props.class,
-      events: { click: [props.onClick] },
+      events: { click: props.onClick },
     },
     props.title
   );

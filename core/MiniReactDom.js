@@ -1,11 +1,30 @@
 import BrowserRouter from "../components/BrowserRouter.js";
 
 const MiniReactDom = {
+  parentReferences: new Map(),
+  elementReferences: new Map(),
+  scheduledUpdates: [],
+
   render: function (rootElement, routes) {
-    BrowserRouter.bind(this)(routes, rootElement);
+    const router = new BrowserRouter(routes, rootElement);
+
+    const generatePage = () => {
+      const path = window.location.pathname;
+      router.navigate(path);
+    };
+
+    const oldPushState = history.pushState;
+    history.pushState = function (state, title, url) {
+      oldPushState.call(history, state, title, url);
+      window.dispatchEvent(new Event("popstate"));
+    };
+
+    window.onpopstate = generatePage;
   },
+
   renderStructure: function generateDom(structure) {
     let element;
+
     if (typeof structure.type === "string") {
       if (structure.type === "TEXT_NODE") {
         return document.createTextNode(structure.content);
@@ -21,9 +40,10 @@ const MiniReactDom = {
             structure.props[propName];
         } else if (propName === "events") {
           for (const eventName in structure.props[propName]) {
-            for (const eventListeners of structure.props[propName][eventName]) {
-              element.addEventListener(eventName, eventListeners);
-            }
+            element.addEventListener(
+              eventName,
+              structure.props[propName][eventName]
+            );
           }
         } else {
           element.setAttribute(propName, structure.props[propName]);
@@ -32,11 +52,90 @@ const MiniReactDom = {
     }
     if (structure.children) {
       for (const child of structure.children) {
-        element.appendChild(this.renderStructure(child));
+        if (child !== null) {
+          const childDOM = this.renderStructure(child);
+          MiniReactDom.elementReferences.set(child, childDOM);
+          MiniReactDom.parentReferences.set(child, element);
+          element.appendChild(childDOM);
+        }
       }
     }
 
     return element;
+  },
+
+  constructClassInstance: function (ComponentClass, props) {
+    const instance = new ComponentClass(props);
+    return instance;
+  },
+
+  diff: function (oldTree, newTree) {
+    if (oldTree === null || newTree === null) {
+      return;
+    }
+
+    if (oldTree.type !== newTree.type) {
+      return true;
+    }
+
+    if (oldTree.props && newTree.props) {
+      const oldProps = Object.keys(oldTree.props);
+      const newProps = Object.keys(newTree.props);
+
+      if (oldProps.length !== newProps.length) {
+        return true;
+      }
+
+      for (let i = 0; i < oldProps.length; i++) {
+        const propName = oldProps[i];
+        if (oldTree.props[propName] !== newTree.props[propName]) {
+          return true;
+        }
+      }
+    }
+
+    if (oldTree.children && newTree.children) {
+      if (oldTree.children.length !== newTree.children.length) {
+        return true;
+      }
+
+      for (let i = 0; i < oldTree.children.length; i++) {
+        if (MiniReactDom.diff(oldTree.children[i], newTree.children[i])) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  },
+
+  flushScheduledUpdates: function () {
+    MiniReactDom.scheduledUpdates.forEach((component) => {
+      component._update();
+    });
+    MiniReactDom.scheduledUpdates = [];
+  },
+
+  scheduleUpdate: function (component) {
+    MiniReactDom.scheduledUpdates.push(component);
+    setTimeout(MiniReactDom.flushScheduledUpdates, 0);
+  },
+
+  updateElement: function (oldElement, newElement) {
+    const hasChanges = MiniReactDom.diff(oldElement, newElement);
+
+    const parent = MiniReactDom.parentReferences.get(oldElement);
+    let oldElementDom = MiniReactDom.elementReferences.get(oldElement);
+    let newElementDom = MiniReactDom.renderStructure(newElement);
+    const isChild = parent.contains(oldElementDom);
+
+    if (hasChanges) {
+      if (isChild) {
+        parent.replaceChild(newElementDom, oldElementDom);
+        MiniReactDom.parentReferences.set(newElement, parent);
+        MiniReactDom.elementReferences.set(newElement, newElementDom);
+      }
+    }
   },
 };
 
