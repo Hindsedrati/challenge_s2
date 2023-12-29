@@ -6,7 +6,7 @@ const Footer = () => {
             class: "h-[233px] bg-[#87A397] flex items-center justify-center",
         },
         MiniReact.createElement('div', {
-                class: "flex justify-between items-center container w-full",
+                class: "flex justify-between items-center gap-4 container w-full flex-col md:flex-row",
             },
             MiniReact.createElement("a", {
                     href: "/"
