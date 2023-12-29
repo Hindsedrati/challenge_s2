@@ -1,10 +1,11 @@
-import page1 from "./pages/page1.js";
-import page2 from "./pages/page2.js";
-// import testPage from "./pages/test-page.js";
+import HomePage from "./pages/HomePage.js";
+import AboutPage from "./pages/AboutPage.js";
+import ErrorPage from "./pages/ErrorPage.js";
 
-export default {
-  "/": page1,
-  "/page1": page1,
-  "/page2": page2,
-  // "./pages/test-page.js": testPage,
-};
+const routes = [
+  { path: "/", component: HomePage },
+  { path: "/about", component: AboutPage },
+  { path: "*", component: ErrorPage },
+];
+
+export default routes;

@@ -6,8 +6,20 @@ const MiniReactDom = {
   scheduledUpdates: [],
 
   render: function (rootElement, routes) {
-    MiniReactDom.parent = rootElement;
-    BrowserRouter.bind(this)(routes, rootElement);
+    const router = new BrowserRouter(routes, rootElement);
+
+    const generatePage = () => {
+      const path = window.location.pathname;
+      router.navigate(path);
+    };
+
+    const oldPushState = history.pushState;
+    history.pushState = function (state, title, url) {
+      oldPushState.call(history, state, title, url);
+      window.dispatchEvent(new Event("popstate"));
+    };
+
+    window.onpopstate = generatePage;
   },
 
   renderStructure: function generateDom(structure) {
