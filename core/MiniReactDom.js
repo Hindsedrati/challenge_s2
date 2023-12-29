@@ -6,8 +6,20 @@ const MiniReactDom = {
   scheduledUpdates: [],
 
   render: function (rootElement, routes) {
-    MiniReactDom.parent = rootElement;
-    BrowserRouter.bind(this)(routes, rootElement);
+    const router = new BrowserRouter(routes, rootElement);
+
+    const generatePage = () => {
+      const path = window.location.pathname;
+      router.navigate(path);
+    };
+
+    const oldPushState = history.pushState;
+    history.pushState = function (state, title, url) {
+      oldPushState.call(history, state, title, url);
+      window.dispatchEvent(new Event("popstate"));
+    };
+
+    window.onpopstate = generatePage;
   },
 
   renderStructure: function generateDom(structure) {
@@ -125,42 +137,6 @@ const MiniReactDom = {
       }
     }
   },
-  // updateElement: function (oldElement, newElement) {
-  //   const hasChanges = MiniReactDom.diff(oldElement, newElement);
-
-  //   let parent = MiniReactDom.parentReferences.get(oldElement);
-  //   let oldElementDom = MiniReactDom.elementReferences.get(oldElement);
-  //   let newElementDom = MiniReactDom.renderStructure(newElement);
-  //   const isChild = parent ? parent.contains(oldElementDom) : false;
-
-  //   if (hasChanges) {
-  //     if (isChild) {
-  //       if (!newElement.children) {
-  //         parent.replaceChild(newElementDom, oldElementDom);
-  //         MiniReactDom.elementReferences.set(newElement, newElementDom);
-  //         MiniReactDom.parentReferences.set(newElement, parent);
-  //       } else {
-  //         if (newElement.children && newElement.children.length) {
-  //           for (let i = 0; i < newElement.children.length; i++) {
-  //             const oldChild = oldElement.children[i];
-  //             const newChild = newElement.children[i];
-
-  //             // Vérifiez si la référence existe avant de mettre à jour
-  //             if (MiniReactDom.elementReferences.has(oldChild)) {
-  //               // Récursive pour les enfants
-  //               MiniReactDom.updateElement(oldChild, newChild);
-  //               console.log("Oiuoi");
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // },
-  updateFragment: function () {},
-  udpdateHostComponent: function () {},
-  updateFunctionComponent: function () {},
-  updateClassComponent: function () {},
 };
 
 export default MiniReactDom;
