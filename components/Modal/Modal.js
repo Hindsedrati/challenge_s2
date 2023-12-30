@@ -1,6 +1,7 @@
 import Component from "../../core/Component.js";
 import MiniReact from "../../core/MiniReact.js";
-import Button from "../../components/button/Button.js"
+import Button from "../../components/button/Button.js";
+import Image from "../Image/Image.js";
 
 class Modal extends Component {
     constructor(props) {
@@ -9,6 +10,9 @@ class Modal extends Component {
             show: false,
             modalOpacity: 0,
         };
+
+
+        this.data = props.data;
 
         console.log(this.state.show);
     }
@@ -41,6 +45,8 @@ class Modal extends Component {
                 éventuellement fermer la modale si on appuie autour - non fait
                 contenu dynamique - en cours
                 Police titre modal - en cours --> j'ai importé la police dans index.html et créer un fichier de config
+                Faire modal spot et modal event
+                    ---> intégrer carousel sur modal spot
                 */
 
 
@@ -84,8 +90,8 @@ class Modal extends Component {
                                         // class: "Raleway text-xl font-semibold text-gray-900"
                                         class: "text-gray-600 body-font font-poppins"
                                     },
-                                    // props.data.title,
-                                    "Header title",
+                                    this.data.title,
+                                    // "Header title",
                                 ),
 
                                 MiniReact.createElement(
@@ -112,36 +118,67 @@ class Modal extends Component {
                             MiniReact.createElement(
                                 "div",
                                 {
-                                    id: "usefull-info",
                                     // class: "flex items-center justify-between p-4 md:p-5 border-b rounded-t"
-                                    class: "flex items-start flex-col space-y-4 p-4 border-b"
+                                    class: "flex items-start flex-row justify-between p-4 pr-8 border-b"
                                 },
 
                                 MiniReact.createElement(
-                                    "p",
+                                    "div",
                                     {
-                                        // class: "Raleway text-xl font-semibold text-gray-900"
-                                        class: "text-gray-600 body-font font-poppins"
+                                        id: "usefull-info",
+                                        // class: "flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+                                        class: "flex items-start flex-col growspace-between p-4 space-y-4"
                                     },
-                                    "Test 1 "
+
+                                    MiniReact.createElement(
+                                        "p",
+                                        {
+                                            // class: "Raleway text-xl font-semibold text-gray-900"
+                                            class: "text-gray-600 body-font font-poppins"
+                                        },
+                                        // "Test 1",
+                                        this.data.type,
+                                    ),
+
+                                    MiniReact.createElement(
+                                        "p",
+                                        {
+                                            // class: "Raleway text-xl font-semibold text-gray-900"
+                                            class: "text-gray-600 body-font font-poppins"
+                                        },
+                                        this.data.date,
+                                    ),
+
+                                    MiniReact.createElement(
+                                        "p",
+                                        {
+                                            // class: "Raleway text-xl font-semibold text-gray-900"
+                                            class: "text-gray-600 body-font font-poppins"
+                                        },
+                                        // "Test 1",
+                                        this.data.start_time + " - " + this.data.end_time,
+
+                                    ),
                                 ),
 
                                 MiniReact.createElement(
-                                    "p",
+                                    "div",
                                     {
-                                        // class: "Raleway text-xl font-semibold text-gray-900"
-                                        class: "text-gray-600 body-font font-poppins"
+                                        // class: "flex items-center justify-between p-4 md:p-5 border-b rounded-t"
+                                        class: "md:mr-16 w-32 h-32"
                                     },
-                                    "Test 2 "
-                                ),
 
-                                MiniReact.createElement(
-                                    "p",
-                                    {
-                                        // class: "Raleway text-xl font-semibold text-gray-900"
-                                        class: "text-gray-600 body-font font-poppins"
-                                    },
-                                    "Test 3 "
+                                    MiniReact.createElement(
+                                        Image,
+                                        {
+                                            src: this.data.media[0].source,
+                                            // src: "assets/logo.svg",
+                                            alt: "Image",
+                                            // class: "object-contain",
+                                            // class: "object-scale-down",
+                                            class: "w-full h-full object-cover",
+                                        }
+                                    )
                                 ),
                             ),
 
@@ -157,7 +194,8 @@ class Modal extends Component {
                                     {
                                         class: "text-base leading-relaxed text-gray-500 "
                                     },
-                                    "With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply."
+                                    // "With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply."
+                                    this.data.description,
                                 ),
 
                                 MiniReact.createElement(
@@ -165,7 +203,8 @@ class Modal extends Component {
                                     {
                                         class: "text-base leading-relaxed text-gray-500 "
                                     },
-                                    "The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them."
+                                    // "The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them."
+                                    this.data.content,
                                 ),
                             ),
 
@@ -181,15 +220,6 @@ class Modal extends Component {
                                     {
                                         class: "flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b "
                                     },
-
-                                    MiniReact.createElement(
-                                        "button",
-                                        {
-                                            type: "button",
-                                            class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center",
-                                        },
-                                        "I accept"
-                                    ),
 
                                     MiniReact.createElement(
                                         Button,
