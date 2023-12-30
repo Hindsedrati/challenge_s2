@@ -1,8 +1,8 @@
 import MiniReact from "../core/MiniReact.js";
 import Header from "../components/Header/Header.js";
 import Footer from "../components/Footer/Footer.js";
-import Link from "../components/Link/Link.js";
 import navlinks from "../utils/navlinks.js";
+import Loader from "../components/Loader/Loader.js";
 
 const HomePage = () => {
   return MiniReact.createElement(
