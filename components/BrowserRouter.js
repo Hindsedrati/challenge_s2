@@ -32,7 +32,10 @@ class BrowserRouter {
 
   render() {
     const component = MiniReact.createElement(this.currentRoute.component);
-    const domContent = MiniReactDom.renderStructure(component);
+    const domContent = MiniReactDom.renderStructure(
+      component,
+      this.rootElement
+    );
     this.rootElement.innerHTML = "";
     this.rootElement.appendChild(domContent);
   }
