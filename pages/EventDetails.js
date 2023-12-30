@@ -3,6 +3,7 @@ import Component from "../core/Component.js";
 import Header from "../components/Header/Header.js";
 import navlinks from "../utils/navlinks.js";
 import Carousel from "../components/Carousel/Carousel.js";
+import Loader from "../components/Loader/Loader.js";
 import Footer from "../components/Footer/Footer.js";
 import ErrorPage from "./ErrorPage.js";
 
@@ -12,7 +13,7 @@ class EventDetails extends Component {
     this.state = {
       event: null,
     };
-    this.event_id = MiniReact.getUrlParameters().id;
+    this.event_id = MiniReact.getUrlParameters().event;
 
     const getEvent = async (event_id) => {
       try {
@@ -38,7 +39,22 @@ class EventDetails extends Component {
     let element;
 
     if (!this.state.event) {
-      element = MiniReact.createElement("p", null, "Chargement en cours...");
+      element = MiniReact.createElement(
+        "div",
+        { class: "h-screen" },
+        MiniReact.createElement(Header, {
+          links: navlinks,
+        }),
+        MiniReact.createElement(
+          "div",
+          {
+            class:
+              "container h-screen mx-auto my-20 p-10 rounded-3xl bg-white flex justify-center items-center ",
+          },
+          MiniReact.createElement(Loader)
+        ),
+        MiniReact.createElement(Footer)
+      );
       this._dom = element;
       return element;
     }
@@ -60,6 +76,11 @@ class EventDetails extends Component {
         {
           class: "container mx-auto my-20 p-10 rounded-3xl bg-white ",
         },
+        MiniReact.createElement(
+          "h1",
+          { class: "w-fit mx-auto text-2xl font-semibold uppercase mb-10" },
+          "Détails de l'évènement"
+        ),
         MiniReact.createElement(Carousel, {
           images: this.state.event.media?.map((image) => image.source),
         }),
@@ -70,7 +91,7 @@ class EventDetails extends Component {
             "div",
             null,
             MiniReact.createElement(
-              "h1",
+              "h2",
               {
                 class: "text-2xl font-semibold md:text-3xl mb-4",
               },
@@ -84,7 +105,7 @@ class EventDetails extends Component {
               class:
                 "bg-yellow-500 block flex items-center font-bold rounded-3xl py-2 px-4 self-start",
             },
-            this.state.event?.time
+            this.state.event?.start_time
           )
         ),
         MiniReact.createElement(
@@ -97,12 +118,12 @@ class EventDetails extends Component {
             { class: "text-xl md:text-2xl flex gap-4" },
             MiniReact.createElement(
               "span",
-              { class: "inline-block font-semibold" },
+              { class: "inline-block font-semibold uppercase" },
               "Lieu : "
             ),
             MiniReact.createElement(
               "span",
-              { class: "inline-block" },
+              { class: "inline-block text-md" },
               this.state.event?.location || "-"
             )
           ),
@@ -112,12 +133,12 @@ class EventDetails extends Component {
             { class: "text-xl md:text-2xl flex gap-4" },
             MiniReact.createElement(
               "span",
-              { class: "inline-block font-semibold" },
+              { class: "inline-block font-semibold uppercase" },
               "Date : "
             ),
             MiniReact.createElement(
               "span",
-              { class: "inline-block" },
+              { class: "inline-block text-md" },
               this.state.event?.date || "-"
             )
           ),
@@ -126,12 +147,12 @@ class EventDetails extends Component {
             { class: "text-xl md:text-2xl flex gap-4" },
             MiniReact.createElement(
               "span",
-              { class: "inline-block font-semibold" },
+              { class: "inline-block font-semibold uppercase" },
               "Type : "
             ),
             MiniReact.createElement(
               "span",
-              { class: "inline-block" },
+              { class: "inline-block text-md" },
               this.state.event?.type || "-"
             )
           ),
@@ -140,12 +161,12 @@ class EventDetails extends Component {
             { class: "text-xl md:text-2xl flex gap-4" },
             MiniReact.createElement(
               "span",
-              { class: "inline-block font-semibold" },
+              { class: "inline-block font-semibold uppercase" },
               "Discipline : "
             ),
             MiniReact.createElement(
               "span",
-              { class: "inline-block" },
+              { class: "inline-block text-md" },
               this.state.event?.discipline || "-"
             )
           )
