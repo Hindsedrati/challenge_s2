@@ -4,7 +4,7 @@ const Link = (props) => {
   return MiniReact.createElement(
     "a",
     {
-      class: props.classes,
+      class: props.class,
       href: props.href,
       events: {
         click: function (event) {
