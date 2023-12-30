@@ -2,29 +2,30 @@ import MiniReact from "../../core/MiniReact.js";
 import Image from "../Image/Image.js";
 
 const Footer = () => {
+
     return MiniReact.createElement("footer", {
-            class: "h-[233px] bg-[#87A397] flex items-center justify-center",
+            class: `h-[100px] md:h-[80px] bg-[#87A397] flex items-center justify-center mt-4 mb-[80px] md:mb-0`,
         },
         MiniReact.createElement('div', {
-                class: "flex justify-between items-center gap-4 container w-full flex-col md:flex-row",
+                class: "flex justify-between items-center gap-4 container mx-auto px-4 py-2",
             },
+
             MiniReact.createElement("a", {
-                    href: "/"
+                    href: "/",
+                    class: "flex items-center",
                 },
                 MiniReact.createElement(Image, {
                     src: "../../assets/logo.svg",
                     alt: "logo",
-                    class: ""
+                    class: "h-12 w-12"
                 }),
             ),
 
             MiniReact.createElement("span", {
-                    class: "text-white text-sm font-medium",
+                    class: "text-white text-xs font-medium",
                 },
-                "© 2023 Tous droits réservés")
+                "Copyright - Tous droits réservés")
         )
     );
 }
-
-
 export default Footer;

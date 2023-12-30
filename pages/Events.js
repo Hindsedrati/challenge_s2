@@ -1,7 +1,8 @@
+import MiniReact from "../core/MiniReact.js";
 import EventCard from "../components/Event/Card.js";
 import Header from "../components/Header/Header.js";
-import MiniReact from "../core/MiniReact.js";
 import navlinks from "../utils/navlinks.js";
+import Footer from "../components/Footer/Footer.js";
 
 const cards = [
   {
@@ -166,7 +167,8 @@ const Events = () => {
       ...cards.map((card) => {
         return MiniReact.createElement(EventCard, card);
       })
-    )
+    ),
+    MiniReact.createElement(Footer)
   );
 };
 
