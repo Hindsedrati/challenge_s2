@@ -22,7 +22,7 @@ const MiniReactDom = {
     window.onpopstate = generatePage;
   },
 
-  renderStructure: function generateDom(structure) {
+  renderStructure: function generateDom(structure, parent) {
     let element;
 
     if (typeof structure.type === "string") {
@@ -50,16 +50,31 @@ const MiniReactDom = {
         }
       }
     }
+    // if (structure.children) {
+    //   for (const child of structure.children) {
+    //     if (child !== null) {
+    //       const childDOM = this.renderStructure(child, element);
+    //       MiniReactDom.elementReferences.set(child, childDOM);
+    //       MiniReactDom.parentReferences.set(child, element);
+    //       element.appendChild(childDOM);
+    //     }
+    //   }
+    // }
+    // MiniReactDom.parentReferences.set(element, parent);
+
+    // console.log(MiniReactDom.parentReferences.get(element));
+
     if (structure.children) {
       for (const child of structure.children) {
         if (child !== null) {
-          const childDOM = this.renderStructure(child);
+          const childDOM = this.renderStructure(child, element);
           MiniReactDom.elementReferences.set(child, childDOM);
-          MiniReactDom.parentReferences.set(child, element);
           element.appendChild(childDOM);
         }
       }
     }
+    MiniReactDom.elementReferences.set(structure, element);
+    MiniReactDom.parentReferences.set(structure, parent);
 
     return element;
   },
@@ -124,9 +139,9 @@ const MiniReactDom = {
   updateElement: function (oldElement, newElement) {
     const hasChanges = MiniReactDom.diff(oldElement, newElement);
 
-    const parent = MiniReactDom.parentReferences.get(oldElement);
+    let parent = MiniReactDom.parentReferences.get(oldElement);
     let oldElementDom = MiniReactDom.elementReferences.get(oldElement);
-    let newElementDom = MiniReactDom.renderStructure(newElement);
+    let newElementDom = MiniReactDom.renderStructure(newElement, parent);
     const isChild = parent.contains(oldElementDom);
 
     if (hasChanges) {

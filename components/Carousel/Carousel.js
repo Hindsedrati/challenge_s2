@@ -3,25 +3,13 @@ import Component from "../../core/Component.js";
 import Button from "../button/Button.js";
 import Image from "../Image/Image.js";
 
-const previous = MiniReact.createElement(
-  "div",
-  {
-    class: "relative",
-  },
-  MiniReact.createElement("i", {
-    class: "fa-solid fa-chevron-left text-black",
-  })
-);
+const previous = MiniReact.createElement("i", {
+  class: "fa-solid fa-chevron-left text-black",
+});
 
-const next = MiniReact.createElement(
-  "div",
-  {
-    class: "relative",
-  },
-  MiniReact.createElement("i", {
-    class: "fa-solid fa-chevron-right text-black",
-  })
-);
+const next = MiniReact.createElement("i", {
+  class: "fa-solid fa-chevron-right text-black",
+});
 
 class Carousel extends Component {
   constructor(props) {
@@ -48,17 +36,18 @@ class Carousel extends Component {
   render() {
     let element = MiniReact.createElement(
       "div",
-      { class: "w-2/3 mx-auto" },
+      { class: "w-11/12 mx-auto overflow-x-auto relative" },
       MiniReact.createElement(
         "div",
         {
-          class: "flex justify-center items-center relative",
+          class: "flex justify-center items-center w-full h-[300px]",
         },
         ...this.images.map((image, index) =>
           index === this.state.current
             ? MiniReact.createElement(Image, {
                 src: image,
                 alt: "mon_image",
+                class: "max-w-full max-h-full object-contain",
               })
             : null
         ),
