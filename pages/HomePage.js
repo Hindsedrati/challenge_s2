@@ -10,7 +10,7 @@ import Carousel from "../components/Carousel/Carousel.js";
 
 
 const HomePage = () => {
-  const dataAPI = {
+  const dataEventAPI = {
     id: "29a43434-2603-4852-ac92-15e23c37da41",
     created_at: "2023-12-30T15:20:06.08444+00:00",
     title: "TENNIS DE TABLE - SIMPLE HOMMES ET FEMMES, TOUR 1",
@@ -35,7 +35,18 @@ const HomePage = () => {
     ]
   }
 
-
+  const dataSpotAPI = {
+    typology: "TERRASSE OUVERTE",
+    address: "354 RUE DE VAUGIRARD",
+    district: "75015",
+    name: "M OU MME HAUVUY THOMAS JACQUES MARIE",
+    siret: "49369995300037",
+    period: "Toute l'année",
+    longitude: 2.2931010760372925,
+    latitude: 48.83575076602406,
+    image: "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=qudJ7fXvU1vkpZVeUR0exQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=276.56073&pitch=0&thumbfov=100",
+    description: "Assistez à l'éblouissante compétition de natation aux Jeux Olympiques, où les meilleurs nageurs mondiaux se mesurent dans des courses à couper le souffle. Vivez chaque virage et chaque sprint dans une ambiance électrisante ! Assistez à l'éblouissante compétition de natation aux Jeux Olympiques, où les meilleurs nageurs mondiaux se mesurent dans des courses à couper le souffle. Vivez chaque virage et chaque sprint dans une ambiance électrisante !"
+  }
 
   const contentSpot =
     // Modal header
@@ -58,8 +69,7 @@ const HomePage = () => {
           {
             class: "text-gray-600 body-font font-poppins"
           },
-          // this.data.title,
-          "Event",
+          dataSpotAPI.name,
         ),
       ),
 
@@ -81,8 +91,7 @@ const HomePage = () => {
             {
               class: "text-gray-600 body-font font-poppins"
             },
-            "Type",
-            // this.data.type,
+            dataSpotAPI.typology,
           ),
 
           MiniReact.createElement(
@@ -90,8 +99,7 @@ const HomePage = () => {
             {
               class: "text-gray-600 body-font font-poppins"
             },
-            "date",
-            // this.data.date,
+            dataSpotAPI.address,
           ),
 
           MiniReact.createElement(
@@ -99,21 +107,20 @@ const HomePage = () => {
             {
               class: "text-gray-600 body-font font-poppins"
             },
-            "horaire",
-            // this.data.start_time + " - " + this.data.end_time,
+            dataSpotAPI.period,
 
           ),
         ),
       ),
 
-      MiniReact.createElement(Carousel, {
-        images: [
-          "../ceo.png",
-          "../assets/logo.svg",
-          "../assets/concert.png",
-          "../assets/spot-1.jpg",
-        ],
-      }),
+      // MiniReact.createElement(Carousel, {
+      //   images: [
+      //     "../ceo.png",
+      //     "../assets/logo.svg",
+      //     "../assets/concert.png",
+      //     "../assets/spot-1.jpg",
+      //   ],
+      // }),
 
       // Modal Body
       MiniReact.createElement(
@@ -127,17 +134,7 @@ const HomePage = () => {
           {
             class: "text-base leading-relaxed text-gray-500 "
           },
-          "With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply."
-          // this.data.description,
-        ),
-
-        MiniReact.createElement(
-          "p",
-          {
-            class: "text-base leading-relaxed text-gray-500 "
-          },
-          "The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them."
-          // data.content,
+          dataSpotAPI.description,
         ),
       ),
 
@@ -188,8 +185,7 @@ const HomePage = () => {
           {
             class: "text-gray-600 body-font font-poppins"
           },
-          // this.data.title,
-          "Event",
+          dataEventAPI.title,
         ),
       ),
 
@@ -211,8 +207,7 @@ const HomePage = () => {
             {
               class: "text-gray-600 body-font font-poppins"
             },
-            "Type",
-            // this.data.type,
+            dataEventAPI.type,
           ),
 
           MiniReact.createElement(
@@ -220,8 +215,7 @@ const HomePage = () => {
             {
               class: "text-gray-600 body-font font-poppins"
             },
-            "date",
-            // this.data.date,
+            dataEventAPI.date,
           ),
 
           MiniReact.createElement(
@@ -229,8 +223,7 @@ const HomePage = () => {
             {
               class: "text-gray-600 body-font font-poppins"
             },
-            "horaire",
-            // this.data.start_time + " - " + this.data.end_time,
+            dataEventAPI.start_time + " - " + dataEventAPI.end_time,
 
           ),
         ),
@@ -244,8 +237,8 @@ const HomePage = () => {
           MiniReact.createElement(
             Image,
             {
-              // src: this.data.media[0].source,
-              src: "https://medias.paris2024.org/uploads/2023/02/PARIS-2024-VISUELS-PICTOGRAMMES-TENNIS-DE-TABLE-1080x1080-1.jpg?x-oss-process=image/resize,w_1081,h_1081,m_lfit/format,webp",
+              src: dataEventAPI.media[0].source,
+              // src: "https://medias.paris2024.org/uploads/2023/02/PARIS-2024-VISUELS-PICTOGRAMMES-TENNIS-DE-TABLE-1080x1080-1.jpg?x-oss-process=image/resize,w_1081,h_1081,m_lfit/format,webp",
               alt: "Image",
               class: "w-full h-full object-cover",
             }
@@ -265,8 +258,7 @@ const HomePage = () => {
           {
             class: "text-base leading-relaxed text-gray-500 "
           },
-          "With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply."
-          // this.data.description,
+          dataEventAPI.description,
         ),
 
         MiniReact.createElement(
@@ -274,8 +266,7 @@ const HomePage = () => {
           {
             class: "text-base leading-relaxed text-gray-500 "
           },
-          "The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them."
-          // data.content,
+          dataEventAPI.content,
         ),
       ),
 
@@ -322,12 +313,12 @@ const HomePage = () => {
     ),
 
     MiniReact.createElement(ModalNew, {
-      data: dataAPI,
+      data: dataEventAPI,
       content: contentEvent,
     }),
 
     MiniReact.createElement(ModalNew, {
-      data: dataAPI,
+      data: dataSpotAPI,
       content: contentSpot,
     }),
 
