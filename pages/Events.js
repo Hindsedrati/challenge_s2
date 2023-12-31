@@ -3,6 +3,7 @@ import Component from "../core/Component.js";
 import Card from "../components/Event/Card.js";
 import Header from "../components/Header/Header.js";
 import navlinks from "../utils/navlinks.js";
+import Paginate from "../components/Paginate/Paginate.js";
 import Footer from "../components/Footer/Footer.js";
 import Loader from "../components/Loader/Loader.js";
 import ErrorPage from "./ErrorPage.js";
@@ -12,7 +13,11 @@ class Events extends Component {
     super(props);
     this.state = {
       events: null,
+      currentPage: 1,
+      eventsPerPage: 6,
     };
+
+    this.childrenKey = this.generateUniqueKey();
 
     const getEvents = async () => {
       try {
@@ -27,12 +32,17 @@ class Events extends Component {
         }
       } catch (error) {
         console.error("Error fetching event:", error);
-        this.setState({ event: "REQUEST_FAILED" });
+        this.setState({ events: "REQUEST_FAILED" });
       }
     };
 
     getEvents();
   }
+
+  handlePagination = (pageNumber) => {
+    console.log("Handling pagination for page:", pageNumber);
+    this.setState({ currentPage: pageNumber });
+  };
 
   render() {
     let element;
@@ -64,6 +74,13 @@ class Events extends Component {
       return element;
     }
 
+    const indexOfLastEvent = this.state.currentPage * this.state.eventsPerPage;
+    const indexOfFirstEvent = indexOfLastEvent - this.state.eventsPerPage;
+    const currentEvents = this.state.events.slice(
+      indexOfFirstEvent,
+      indexOfLastEvent
+    );
+
     element = MiniReact.createElement(
       "div",
       null,
@@ -84,11 +101,17 @@ class Events extends Component {
             class:
               "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center px-2 md:px-0",
           },
-          ...this.state.events.map((event) => {
+          ...currentEvents.map((event) => {
             return MiniReact.createElement(Card, event);
           })
         )
       ),
+      MiniReact.createElement(Paginate, {
+        key: this.childrenKey,
+        eventsPerPage: this.state.eventsPerPage,
+        totalEvents: this.state.events.length,
+        handlePagination: this.handlePagination,
+      }),
       MiniReact.createElement(Footer)
     );
 
