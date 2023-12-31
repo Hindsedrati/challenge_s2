@@ -70,7 +70,7 @@ export default class Header extends Component {
               class: "",
             }),
             class: "text-sm font-semibold leading-6 text-gray-900",
-            href: "/page2",
+            href: "/",
           }),
           MiniReact.createElement(
             "div",
