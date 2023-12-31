@@ -6,6 +6,7 @@ import navlinks from "../utils/navlinks.js";
 import Paginate from "../components/Paginate/Paginate.js";
 import Footer from "../components/Footer/Footer.js";
 import Loader from "../components/Loader/Loader.js";
+import NoData from "../components/NoData/NoData.js";
 import ErrorPage from "./ErrorPage.js";
 
 class Events extends Component {
@@ -122,22 +123,42 @@ class Events extends Component {
       return element;
     }
 
-    const indexOfLastEvent = this.state.currentPage * this.state.eventsPerPage;
-    const indexOfFirstEvent = indexOfLastEvent - this.state.eventsPerPage;
+    let indexOfLastEvent =
+      this.state.currentPage !== 0
+        ? this.state.currentPage * this.state.eventsPerPage
+        : this.state.filteredEvents.length;
+    let indexOfFirstEvent = indexOfLastEvent - this.state.eventsPerPage;
+
+    indexOfFirstEvent = Math.max(0, indexOfFirstEvent);
+
     const currentEvents = this.state.filteredEvents.slice(
       indexOfFirstEvent,
       indexOfLastEvent
     );
 
+    const content =
+      currentEvents.length > 0
+        ? MiniReact.createElement(
+            "div",
+            {
+              class:
+                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center px-2 md:px-0",
+            },
+            ...currentEvents.map((event) => {
+              return MiniReact.createElement(Card, event);
+            })
+          )
+        : MiniReact.createElement(NoData);
+
     element = MiniReact.createElement(
-      "div",
+      "main",
       null,
       MiniReact.createElement(Header, {
         links: navlinks,
       }),
       MiniReact.createElement(
         "main",
-        { class: "container mx-auto" },
+        { class: "container mx-auto min-h-screen" },
         MiniReact.createElement(
           "h1",
           { class: "w-fit mx-auto my-20 uppercase text-3xl" },
@@ -221,16 +242,7 @@ class Events extends Component {
             })
           )
         ),
-        MiniReact.createElement(
-          "div",
-          {
-            class:
-              "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center px-2 md:px-0",
-          },
-          ...currentEvents.map((event) => {
-            return MiniReact.createElement(Card, event);
-          })
-        )
+        content
       ),
       this.state.filteredEvents.length > this.state.eventsPerPage &&
         this.state.currentPage <=
@@ -242,7 +254,6 @@ class Events extends Component {
             handlePagination: this.handlePagination,
           })
         : null,
-      currentEvents.length,
       MiniReact.createElement(Footer)
     );
 
