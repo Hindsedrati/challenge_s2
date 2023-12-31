@@ -1,41 +1,65 @@
-const BrowserRouter = function (routes, rootElement) {
-  const generatePage = () => {
-    const path = location.pathname;
-    if (rootElement.childNodes.length) {
-      rootElement.replaceChild(
-        this.renderStructure(routes[path]),
-        rootElement.childNodes[0]
-      );
-    } else rootElement.appendChild(this.renderStructure(routes[path]));
-  };
-  generatePage();
-  const oldPushState = history.pushState;
-  history.pushState = function (state, title, url) {
-    oldPushState.call(history, state, title, url);
-    window.dispatchEvent(new Event("popstate"));
-  };
-  window.onpopstate = generatePage;
-};
+import MiniReactDom from "../core/MiniReactDom.js";
+import MiniReact from "../core/MiniReact.js";
 
-export const BrowserLink = function (props) {
-  return {
-    type: "a",
-    props: {
-      href: props.to,
-      events: {
-        click: function (event) {
-          event.preventDefault();
-          history.pushState(null, null, props.to);
-        },
-      },
-    },
-    children: [
-      {
-        type: "TEXT_NODE",
-        content: props.title,
-      },
-    ],
-  };
-};
+class BrowserRouter {
+  constructor(routes, rootElement) {
+    this.routes = routes;
+    this.rootElement = rootElement;
+    this.currentRoute = null;
+    this.init();
+  }
+
+  init() {
+    window.addEventListener("popstate", this.handlePopState.bind(this));
+    this.handlePopState();
+  }
+
+  handlePopState() {
+    const { pathname, search } = window.location;
+    this.navigate(pathname, search);
+  }
+
+  navigate(path, search) {
+    const route = this.findRoute(path);
+
+    if (route) {
+      this.currentRoute = route;
+      this.render();
+    } else {
+      console.error(`Error: No route found for ${path}`);
+    }
+  }
+
+  render() {
+    const component = MiniReact.createElement(this.currentRoute.component);
+    const domContent = MiniReactDom.renderStructure(
+      component,
+      this.rootElement
+    );
+    this.rootElement.innerHTML = "";
+    this.rootElement.appendChild(domContent);
+  }
+
+  findRoute(path) {
+    return (
+      this.routes.find((r) => this.matchRoute(r.path, path)) ||
+      this.routes.find((r) => r.path === "*")
+    );
+  }
+
+  matchRoute(pattern, path) {
+    const regex = this.pathToRegex(pattern);
+    const match = path.match(regex);
+
+    const isFullMatch = match ? match[0] === path : false;
+    return isFullMatch;
+  }
+
+  pathToRegex(pattern) {
+    const escapedPattern = pattern.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regexPattern = escapedPattern.replace(/:([^/]+)/g, "([^/]+)");
+    return new RegExp(`^${regexPattern}$`);
+  }
+}
 
 export default BrowserRouter;
