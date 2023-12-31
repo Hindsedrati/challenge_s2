@@ -10,7 +10,6 @@ const Link = (props) => {
         click: function (event) {
           event.preventDefault();
           history.pushState(null, null, props.href);
-          console.log("lien");
         },
       },
     },
