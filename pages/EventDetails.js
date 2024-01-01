@@ -4,6 +4,8 @@ import Header from "../components/Header/Header.js";
 import navlinks from "../utils/navlinks.js";
 import Carousel from "../components/Carousel/Carousel.js";
 import Loader from "../components/Loader/Loader.js";
+import Modal from "../components/Modal/Modal.js";
+import SpotContent from "../components/Modal/SpotContent.js";
 import Footer from "../components/Footer/Footer.js";
 import ErrorPage from "./ErrorPage.js";
 
@@ -23,7 +25,6 @@ class EventDetails extends Component {
         const data = await response.json();
         if (data.data) {
           this.setState({ event: data.data[0] });
-          console.log(data.data[0]);
         } else {
           this.setState({ event: "NO_DATA" });
         }
@@ -206,30 +207,39 @@ class EventDetails extends Component {
                 "Détails"
               )
             ),
-            ...this.state.event?.spot.map((event) =>
+            ...this.state.event?.spot.map((spot) =>
               MiniReact.createElement(
                 "div",
                 {
                   class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
                 },
                 MiniReact.createElement("img", {
-                  src: event.image,
+                  src: spot.image,
                   class: "rounded-full w-[350px] h-[100px] object-cover",
                 }),
                 MiniReact.createElement(
                   "span",
-                  { class: "inline-block flex justify-center items-center" },
-                  event.typology
+                  { class: "flex justify-center items-center" },
+                  spot.typology
                 ),
                 MiniReact.createElement(
                   "span",
-                  { class: "inline-block flex justify-center items-center" },
-                  event.address.toLowerCase() + ", " + event.district
+                  { class: "flex justify-center items-center" },
+                  spot.address.toLowerCase() + ", " + spot.district
                 ),
                 MiniReact.createElement(
-                  "button",
+                  "div",
                   { class: "flex justify-center items-center" },
-                  "+ Voir"
+                  MiniReact.createElement(
+                    Modal,
+                    {
+                      title: "Voir +",
+                      content: MiniReact.createElement(SpotContent, {
+                        spot,
+                      }),
+                    },
+                    "+ Voir"
+                  )
                 )
               )
             )
