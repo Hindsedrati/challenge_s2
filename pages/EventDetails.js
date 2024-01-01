@@ -23,6 +23,7 @@ class EventDetails extends Component {
         const data = await response.json();
         if (data.data) {
           this.setState({ event: data.data[0] });
+          console.log(data.data[0]);
         } else {
           this.setState({ event: "NO_DATA" });
         }
@@ -188,96 +189,48 @@ class EventDetails extends Component {
               {
                 class: "grid grid-cols-4",
               },
-              MiniReact.createElement("div", null),
+              MiniReact.createElement("div"),
               MiniReact.createElement(
                 "span",
-                { class: "inline-block" },
+                { class: "inline-block flex justify-center items-center" },
                 "Type"
               ),
               MiniReact.createElement(
                 "span",
-                { class: "inline-block" },
+                { class: "inline-block flex justify-center items-center" },
                 "Adresse"
               ),
               MiniReact.createElement(
                 "span",
-                { class: "inline-block" },
-                "Detail"
+                { class: "inline-block flex justify-center items-center" },
+                "Détails"
               )
             ),
-            MiniReact.createElement(
-              "div",
-              {
-                class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
-              },
-              MiniReact.createElement("img", {
-                src: "../assets/concert.png",
-                class: "rounded-full w-[300px]",
-              }),
+            ...this.state.event?.spot.map((event) =>
               MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "Breakfast in America"
-              ),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "1 rue de la merde, Balleck 99999"
-              ),
-              MiniReact.createElement(
-                "button",
-                { class: "inline-block" },
-                "+ Voir"
-              )
-            ),
-            MiniReact.createElement(
-              "div",
-              {
-                class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
-              },
-              MiniReact.createElement("img", {
-                src: "../assets/concert.png",
-                class: "rounded-full w-[300px]",
-              }),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "Breakfast in America"
-              ),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "1 rue de la merde, Balleck 99999"
-              ),
-              MiniReact.createElement(
-                "button",
-                { class: "inline-block" },
-                "+ Voir"
-              )
-            ),
-            MiniReact.createElement(
-              "div",
-              {
-                class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
-              },
-              MiniReact.createElement("img", {
-                src: "../assets/concert.png",
-                class: "rounded-full w-[300px]",
-              }),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "Breakfast in America"
-              ),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "1 rue de la merde, Balleck 99999"
-              ),
-              MiniReact.createElement(
-                "button",
-                { class: "inline-block" },
-                "+ Voir"
+                "div",
+                {
+                  class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
+                },
+                MiniReact.createElement("img", {
+                  src: event.image,
+                  class: "rounded-full w-[350px] h-[100px] object-cover",
+                }),
+                MiniReact.createElement(
+                  "span",
+                  { class: "inline-block flex justify-center items-center" },
+                  event.typology
+                ),
+                MiniReact.createElement(
+                  "span",
+                  { class: "inline-block flex justify-center items-center" },
+                  event.address.toLowerCase() + ", " + event.district
+                ),
+                MiniReact.createElement(
+                  "button",
+                  { class: "flex justify-center items-center" },
+                  "+ Voir"
+                )
               )
             )
           )

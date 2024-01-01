@@ -141,8 +141,7 @@ class Events extends Component {
         ? MiniReact.createElement(
             "div",
             {
-              class:
-                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center px-2 md:px-0",
+              class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
             },
             ...currentEvents.map((event) => {
               return MiniReact.createElement(Card, event);
@@ -151,7 +150,7 @@ class Events extends Component {
         : MiniReact.createElement(NoData);
 
     element = MiniReact.createElement(
-      "main",
+      "div",
       null,
       MiniReact.createElement(Header, {
         links: navlinks,
@@ -188,7 +187,7 @@ class Events extends Component {
                     selected: true,
                   }
                 : { value: "all" },
-              "Tous les évènements"
+              "Type de sport"
             ),
             ...this.state.types.map((type) => {
               return MiniReact.createElement(
@@ -224,7 +223,7 @@ class Events extends Component {
                     selected: true,
                   }
                 : { value: "all" },
-              "Toutes les disciplines"
+              "Discipline"
             ),
             ...this.state.disciplines.map((discipline) => {
               return MiniReact.createElement(

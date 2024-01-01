@@ -1,5 +1,5 @@
 import MiniReact from "../core/MiniReact.js";
-import Header from "../components/Header/Header.js";
+import Link from "../components/Link/Link.js";
 import Footer from "../components/Footer/Footer.js";
 
 const NotFoundPage = () => {
@@ -20,29 +20,25 @@ const NotFoundPage = () => {
             class:
               "text-xl font-semibold mb-8 border-b-2 border-black pb-2 w-fit",
           },
-          "Erreur 404"
+          "Erreur olympique 404"
         ),
         MiniReact.createElement(
           "p",
-          { class: "text-6xl mb-10" },
-          MiniReact.createElement("span", null, "Le chemin"),
+          { class: "text-6xl mb-10 tracking-wider" },
+          MiniReact.createElement("span", null, "Aïe, pas de médaille "),
           MiniReact.createElement("br"),
-          MiniReact.createElement("span", null, "est incorrect Chef !")
+          MiniReact.createElement("span", null, "pour cette page !")
         ),
         MiniReact.createElement(
           "p",
           { class: "text-xl" },
-          "Désolé, la page que vous recherchez semble introuvable."
-        ),
-        MiniReact.createElement(
-          "p",
-          { class: "text-xl mt-4" },
-          "Retournez à la ",
+          "Sprintez vers la page d'",
           MiniReact.createElement(
             "a",
-            { href: "/", class: "text-blue-500" },
-            "page d'accueil"
-          )
+            { href: "/", class: " text-blue-500" },
+            "accueil "
+          ),
+          "!"
         )
       )
     ),
