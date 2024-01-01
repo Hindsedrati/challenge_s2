@@ -40,5 +40,9 @@ export default class Component {
     MiniReactDom.updateElement(oldElement, newElement);
   }
 
+  _domRef() {
+    return MiniReactDom.elementReferences.get(this._dom);
+  }
+
   render() {}
 }
