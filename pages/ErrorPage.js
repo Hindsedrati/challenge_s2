@@ -33,11 +33,11 @@ const NotFoundPage = () => {
           "p",
           { class: "text-xl" },
           "Sprintez vers la page d'",
-          MiniReact.createElement(
-            "a",
-            { href: "/", class: " text-blue-500" },
-            "accueil "
-          ),
+          MiniReact.createElement(Link, {
+            href: "/",
+            class: " text-blue-500",
+            value: "accueil",
+          }),
           "!"
         )
       )

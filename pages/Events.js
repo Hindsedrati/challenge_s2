@@ -151,13 +151,13 @@ class Events extends Component {
 
     element = MiniReact.createElement(
       "div",
-      null,
+      { class: "min-h-screen h-fit" },
       MiniReact.createElement(Header, {
         links: navlinks,
       }),
       MiniReact.createElement(
         "main",
-        { class: "container mx-auto min-h-screen" },
+        { class: "container mx-auto h-2/3" },
         MiniReact.createElement(
           "h1",
           { class: "w-fit mx-auto my-20 uppercase text-3xl" },
