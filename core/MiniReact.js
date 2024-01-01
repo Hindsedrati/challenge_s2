@@ -8,7 +8,7 @@ const MiniReact = {
   instanceKeyCounter: 0,
 
   generateUniqueKey: () => {
-    return Symbol(`__uniqueKey_${MiniReact.instanceKeyCounter}`);
+    return Symbol(`__uniqueKey_${MiniReact.instanceKeyCounter++}`);
   },
 
   createElement: (type, props = {}, ...children) => {
@@ -23,7 +23,6 @@ const MiniReact = {
       let oldProps = MiniReact.componentPropsRefecence.get(key);
 
       if (!instance) {
-        console.log(type, "new");
         instance = new type({ ...props, key, children: processedChildren });
         MiniReact.componentInstancesReference.set(key, instance);
         MiniReact.componentPropsRefecence.set(key, props);
@@ -67,12 +66,9 @@ const MiniReact = {
       const elementStructure = instance._dom;
       const domElement = MiniReactDom.elementReferences.get(elementStructure);
 
-      // Vérifiez si la référence d'élément dom est présente sur la nouvelle page
       if (domElement && domContent.contains(domElement)) {
-        console.log("Element is still in use:", domElement);
+        return;
       } else {
-        // L'élément dom n'est pas présent sur la nouvelle page, supprimez l'instance
-        console.log("Removing unused instance:", instance);
         MiniReact.componentInstancesReference.delete(key);
         MiniReact.componentPropsRefecence.delete(key);
       }
