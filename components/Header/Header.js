@@ -48,7 +48,7 @@ export default class Header extends Component {
         let element = MiniReact.createElement(
             "header",
             {
-                class: "h-[159px] bg-white flex items-center justify-center mb-4",
+                class: "h-[100px] bg-white flex items-center mb-4",
                 style: {
                     boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.25)",
                 },
@@ -56,13 +56,13 @@ export default class Header extends Component {
             MiniReact.createElement(
                 "nav",
                 {
-                    class: "container border-gray-200",
+                    class: "container mx-auto border-gray-200",
                 },
                 MiniReact.createElement(
                     "div",
                     {
                         class:
-                            "max-w-screen-xl flex flex-wrap items-center mx-auto p-4",
+                            "flex flex-wrap items-center mx-auto p-4",
                     },
                     MiniReact.createElement(Link, {
                         value: MiniReact.createElement(Image, {
