@@ -5,4 +5,13 @@ const areObjectsEqual = (obj1, obj2) => {
   return stringifiedObj1 === stringifiedObj2;
 };
 
-export { areObjectsEqual };
+const toPascalCase = (string) => {
+  string
+    .split(" ")
+    .map(
+      (word) => word.split("")[0].toUpperCase() + word.slice(1).toLowerCase()
+    )
+    .join(" ");
+};
+
+export { areObjectsEqual, toPascalCase };
