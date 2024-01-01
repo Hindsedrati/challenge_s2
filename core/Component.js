@@ -31,7 +31,6 @@ export default class Component {
    */
   _update() {
     const oldElement = this._dom;
-    console.log(oldElement);
 
     this.state = this._pendingState;
     this._pendingState = null;

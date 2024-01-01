@@ -30,9 +30,9 @@ const MiniReactDom = {
       for (const propName in structure.props) {
         if (propName === "style") {
           Object.assign(element.style, structure.props[propName]);
-          // } else if (propName.startsWith("data-")) {
-          //   element.dataset[propName.replace("data-", "")] =
-          //     structure.props[propName];
+        } else if (propName.startsWith("data-")) {
+          element.dataset[propName.replace("data-", "")] =
+            structure.props[propName];
         } else if (propName === "events") {
           for (const eventName in structure.props[propName]) {
             element.addEventListener(
@@ -126,7 +126,6 @@ const MiniReactDom = {
     let newElementDom = MiniReactDom.renderStructure(newElement, parent);
     const isChild = parent.contains(oldElementDom);
 
-    console.log(hasChanges, newElementDom, isChild);
     if (hasChanges) {
       if (isChild) {
         parent.replaceChild(newElementDom, oldElementDom);
