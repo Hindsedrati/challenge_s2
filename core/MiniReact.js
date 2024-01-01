@@ -1,7 +1,9 @@
 import Component from "./Component.js";
+import { areObjectsEqual } from "../utils/utils.js";
 
 const MiniReact = {
-  componentInstances: new Map(),
+  componentInstancesReference: new Map(),
+  componentPropsRefecence: new Map(),
   instanceKeyCounter: 0,
 
   generateUniqueKey: () => {
@@ -16,16 +18,18 @@ const MiniReact = {
 
     if (type.prototype instanceof Component) {
       const key = props.key || MiniReact.generateUniqueKey();
-      let instance = MiniReact.componentInstances.get(key);
+      let instance = MiniReact.componentInstancesReference.get(key);
+      let oldProps = MiniReact.componentPropsRefecence.get(key);
+
       if (!instance) {
         instance = new type({ ...props, key, children: processedChildren });
-        MiniReact.componentInstances.set(key, instance);
+        MiniReact.componentInstancesReference.set(key, instance);
+        MiniReact.componentPropsRefecence.set(key, props);
+      } else if (!areObjectsEqual(oldProps, props)) {
+        instance.props = { ...props, children: processedChildren };
+        MiniReact.componentPropsRefecence.set(key, instance.props);
       }
-
       return instance.render();
-
-      // const instance = new type({ ...props, children: processedChildren });
-      // return instance.render();
     } else if (typeof type === "function") {
       return type({ ...props, children: processedChildren });
     } else {

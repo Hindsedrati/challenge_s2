@@ -13,7 +13,7 @@ export default class Component {
    * @returns A unique identifier that is used to track instances
    */
   generateUniqueKey() {
-    return Symbol(`__uniqueKey_${this.instanceKeyCounter++}`);
+    return Symbol.for(`__uniqueKey_${this.instanceKeyCounter++}`);
   }
 
   /**
