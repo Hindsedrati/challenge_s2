@@ -1,10 +1,11 @@
 import MiniReact from "../core/MiniReact.js";
 import Component from "../core/Component.js";
 import Header from "../components/Header/Header.js";
-import Footer from "../components/Footer/Footer.js";
 import navlinks from "../utils/navlinks.js";
 import Loader from "../components/Loader/Loader.js";
 import Map from "../components/Map/Map.js";
+import Filters from "../components/Filters/Filters.js";
+import Footer from "../components/Footer/Footer.js";
 
 class HomePage extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class HomePage extends Component {
           { class: "text-lg mb-10" },
           "Plongez dans l'univers palpitant des Jeux Olympiques de 2024 grâce à notre carte interactive ! Découvrez tous les événements et lieux incontournables, et personnalisez votre expérience en filtrant par catégorie et type d'événement. Que vous soyez passionné de sports, de culture ou d'aventures, trouvez les moments qui vous ressemblent et créez des souvenirs inoubliables au cœur de cet événement mondial."
         ),
+        MiniReact.createElement(Filters),
         MiniReact.createElement(Map)
       ),
       MiniReact.createElement(Footer),
