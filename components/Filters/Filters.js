@@ -31,7 +31,7 @@ class Filters extends Component {
   }
 
   filterEvents = (filter, discipline) => {
-    let filteredEvents = props.events;
+    let filteredEvents = this.props.events;
 
     if (filter !== "all") {
       filteredEvents = filteredEvents.filter((event) => event.type === filter);
@@ -43,7 +43,7 @@ class Filters extends Component {
       );
     }
 
-    props.handleFilter(filteredEvents);
+    this.props.handleFilter(filteredEvents);
 
     this.setState({
       filter: filter,
