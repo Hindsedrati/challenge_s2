@@ -18,6 +18,23 @@ class Map extends Component {
     this.addMarkers();
   }
 
+  addMarkers() {
+    const { filteredEvents } = this.props;
+
+    this.markers.forEach((marker) => marker.setMap(null));
+    this.markers = [];
+
+    filteredEvents.forEach((event) => {
+      const marker = new google.maps.Marker({
+        position: { lat: event.latitude, lng: event.longitude },
+        map: this.map,
+        title: event.title,
+      });
+
+      this.markers.push(marker);
+    });
+  }
+
   render() {
     return MiniReact.createElement("div", {
       id: "map",
