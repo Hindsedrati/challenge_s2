@@ -6,7 +6,7 @@ const areObjectsEqual = (obj1, obj2) => {
 };
 
 const toPascalCase = (string) => {
-  string
+  return string
     .split(" ")
     .map(
       (word) => word.split("")[0].toUpperCase() + word.slice(1).toLowerCase()

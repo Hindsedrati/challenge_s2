@@ -8,18 +8,13 @@ const MiniReactDom = {
   render: function (rootElement, routes) {
     const router = new BrowserRouter(routes, rootElement);
 
-    const generatePage = () => {
-      const path = window.location.pathname;
-      router.navigate(path);
-    };
-
     const oldPushState = history.pushState;
     history.pushState = function (state, title, url) {
       oldPushState.call(history, state, title, url);
       window.dispatchEvent(new Event("popstate"));
     };
 
-    window.onpopstate = generatePage;
+    window.onpopstate = this;
   },
 
   renderStructure: function generateDom(structure, parent) {
@@ -35,9 +30,9 @@ const MiniReactDom = {
       for (const propName in structure.props) {
         if (propName === "style") {
           Object.assign(element.style, structure.props[propName]);
-          // } else if (propName.startsWith("data-")) {
-          //   element.dataset[propName.replace("data-", "")] =
-          //     structure.props[propName];
+        } else if (propName.startsWith("data-")) {
+          element.dataset[propName.replace("data-", "")] =
+            structure.props[propName];
         } else if (propName === "events") {
           for (const eventName in structure.props[propName]) {
             element.addEventListener(
@@ -50,19 +45,6 @@ const MiniReactDom = {
         }
       }
     }
-    // if (structure.children) {
-    //   for (const child of structure.children) {
-    //     if (child !== null) {
-    //       const childDOM = this.renderStructure(child, element);
-    //       MiniReactDom.elementReferences.set(child, childDOM);
-    //       MiniReactDom.parentReferences.set(child, element);
-    //       element.appendChild(childDOM);
-    //     }
-    //   }
-    // }
-    // MiniReactDom.parentReferences.set(element, parent);
-
-    // console.log(MiniReactDom.parentReferences.get(element));
 
     if (structure.children) {
       for (const child of structure.children) {

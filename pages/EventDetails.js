@@ -4,6 +4,8 @@ import Header from "../components/Header/Header.js";
 import navlinks from "../utils/navlinks.js";
 import Carousel from "../components/Carousel/Carousel.js";
 import Loader from "../components/Loader/Loader.js";
+import Modal from "../components/Modal/Modal.js";
+import SpotContent from "../components/Modal/SpotContent.js";
 import Footer from "../components/Footer/Footer.js";
 import ErrorPage from "./ErrorPage.js";
 
@@ -188,96 +190,57 @@ class EventDetails extends Component {
               {
                 class: "grid grid-cols-4",
               },
-              MiniReact.createElement("div", null),
+              MiniReact.createElement("div"),
               MiniReact.createElement(
                 "span",
-                { class: "inline-block" },
+                { class: "inline-block flex justify-center items-center" },
                 "Type"
               ),
               MiniReact.createElement(
                 "span",
-                { class: "inline-block" },
+                { class: "inline-block flex justify-center items-center" },
                 "Adresse"
               ),
               MiniReact.createElement(
                 "span",
-                { class: "inline-block" },
-                "Detail"
+                { class: "inline-block flex justify-center items-center" },
+                "Détails"
               )
             ),
-            MiniReact.createElement(
-              "div",
-              {
-                class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
-              },
-              MiniReact.createElement("img", {
-                src: "../assets/concert.png",
-                class: "rounded-full w-[300px]",
-              }),
+            ...this.state.event?.spot.map((spot) =>
               MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "Breakfast in America"
-              ),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "1 rue de la merde, Balleck 99999"
-              ),
-              MiniReact.createElement(
-                "button",
-                { class: "inline-block" },
-                "+ Voir"
-              )
-            ),
-            MiniReact.createElement(
-              "div",
-              {
-                class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
-              },
-              MiniReact.createElement("img", {
-                src: "../assets/concert.png",
-                class: "rounded-full w-[300px]",
-              }),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "Breakfast in America"
-              ),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "1 rue de la merde, Balleck 99999"
-              ),
-              MiniReact.createElement(
-                "button",
-                { class: "inline-block" },
-                "+ Voir"
-              )
-            ),
-            MiniReact.createElement(
-              "div",
-              {
-                class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
-              },
-              MiniReact.createElement("img", {
-                src: "../assets/concert.png",
-                class: "rounded-full w-[300px]",
-              }),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "Breakfast in America"
-              ),
-              MiniReact.createElement(
-                "span",
-                { class: "inline-block" },
-                "1 rue de la merde, Balleck 99999"
-              ),
-              MiniReact.createElement(
-                "button",
-                { class: "inline-block" },
-                "+ Voir"
+                "div",
+                {
+                  class: "bg-red-100 rounded-full px-4 py-2 grid grid-cols-4",
+                },
+                MiniReact.createElement("img", {
+                  src: spot.image,
+                  class: "rounded-full w-[350px] h-[100px] object-cover",
+                }),
+                MiniReact.createElement(
+                  "span",
+                  { class: "flex justify-center items-center" },
+                  spot.typology
+                ),
+                MiniReact.createElement(
+                  "span",
+                  { class: "flex justify-center items-center" },
+                  spot.address.toLowerCase() + ", " + spot.district
+                ),
+                MiniReact.createElement(
+                  "div",
+                  { class: "flex justify-center items-center" },
+                  MiniReact.createElement(
+                    Modal,
+                    {
+                      title: "Voir +",
+                      content: MiniReact.createElement(SpotContent, {
+                        spot,
+                      }),
+                    },
+                    "+ Voir"
+                  )
+                )
               )
             )
           )
