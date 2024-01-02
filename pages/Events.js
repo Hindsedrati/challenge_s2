@@ -139,26 +139,25 @@ class Events extends Component {
     const content =
       currentEvents.length > 0
         ? MiniReact.createElement(
-            "div",
-            {
-              class:
-                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center px-2 md:px-0",
-            },
-            ...currentEvents.map((event) => {
-              return MiniReact.createElement(Card, event);
-            })
-          )
+          "div",
+          {
+            class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5",
+          },
+          ...currentEvents.map((event) => {
+            return MiniReact.createElement(Card, event);
+          })
+        )
         : MiniReact.createElement(NoData);
 
     element = MiniReact.createElement(
-      "main",
-      null,
+      "div",
+      { class: "min-h-screen h-fit" },
       MiniReact.createElement(Header, {
         links: navlinks,
       }),
       MiniReact.createElement(
         "main",
-        { class: "container mx-auto min-h-screen" },
+        { class: "p-3 container mx-auto h-2/3" },
         MiniReact.createElement(
           "h1",
           { class: "w-fit mx-auto my-20 uppercase text-3xl" },
@@ -184,23 +183,23 @@ class Events extends Component {
               "option",
               this.state.filter === "all"
                 ? {
-                    value: "all",
-                    selected: true,
-                  }
+                  value: "all",
+                  selected: true,
+                }
                 : { value: "all" },
-              "Tous les évènements"
+              "Type de sport"
             ),
             ...this.state.types.map((type) => {
               return MiniReact.createElement(
                 "option",
                 this.state.filter === type
                   ? {
-                      value: type,
-                      selected: true,
-                    }
+                    value: type,
+                    selected: true,
+                  }
                   : {
-                      value: type,
-                    },
+                    value: type,
+                  },
                 type
               );
             })
@@ -220,23 +219,23 @@ class Events extends Component {
               "option",
               this.state.discipline === "all"
                 ? {
-                    value: "all",
-                    selected: true,
-                  }
+                  value: "all",
+                  selected: true,
+                }
                 : { value: "all" },
-              "Toutes les disciplines"
+              "Discipline"
             ),
             ...this.state.disciplines.map((discipline) => {
               return MiniReact.createElement(
                 "option",
                 this.state.discipline === discipline
                   ? {
-                      value: discipline,
-                      selected: true,
-                    }
+                    value: discipline,
+                    selected: true,
+                  }
                   : {
-                      value: discipline,
-                    },
+                    value: discipline,
+                  },
                 discipline
               );
             })
@@ -246,13 +245,13 @@ class Events extends Component {
       ),
       this.state.filteredEvents.length > this.state.eventsPerPage &&
         this.state.currentPage <=
-          Math.ceil(this.state.filteredEvents.length / this.state.eventsPerPage)
+        Math.ceil(this.state.filteredEvents.length / this.state.eventsPerPage)
         ? MiniReact.createElement(Paginate, {
-            key: this.childrenKey,
-            eventsPerPage: this.state.eventsPerPage,
-            totalEvents: this.state.filteredEvents.length,
-            handlePagination: this.handlePagination,
-          })
+          key: this.childrenKey,
+          eventsPerPage: this.state.eventsPerPage,
+          totalEvents: this.state.filteredEvents.length,
+          handlePagination: this.handlePagination,
+        })
         : null,
       MiniReact.createElement(Footer)
     );

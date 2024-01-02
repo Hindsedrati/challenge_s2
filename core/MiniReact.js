@@ -1,3 +1,4 @@
+import MiniReactDom from "./MiniReactDom.js";
 import Component from "./Component.js";
 import { areObjectsEqual } from "../utils/utils.js";
 
@@ -7,7 +8,7 @@ const MiniReact = {
   instanceKeyCounter: 0,
 
   generateUniqueKey: () => {
-    return Symbol(`__uniqueKey_${MiniReact.instanceKeyCounter}`);
+    return Symbol(`__uniqueKey_${MiniReact.instanceKeyCounter++}`);
   },
 
   createElement: (type, props = {}, ...children) => {
@@ -58,6 +59,20 @@ const MiniReact = {
       result[key] = encodeURIComponent(value);
     }
     return result;
+  },
+
+  cleanupUnusedInstances: (domContent) => {
+    for (const [key, instance] of MiniReact.componentInstancesReference) {
+      const elementStructure = instance._dom;
+      const domElement = MiniReactDom.elementReferences.get(elementStructure);
+
+      if (domElement && domContent.contains(domElement)) {
+        return;
+      } else {
+        MiniReact.componentInstancesReference.delete(key);
+        MiniReact.componentPropsRefecence.delete(key);
+      }
+    }
   },
 };
 

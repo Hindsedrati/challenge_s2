@@ -15,11 +15,11 @@ class BrowserRouter {
   }
 
   handlePopState() {
-    const { pathname, search } = window.location;
-    this.navigate(pathname, search);
+    const { pathname } = window.location;
+    this.navigate(pathname);
   }
 
-  navigate(path, search) {
+  navigate(path) {
     const route = this.findRoute(path);
 
     if (route) {
@@ -38,6 +38,7 @@ class BrowserRouter {
     );
     this.rootElement.innerHTML = "";
     this.rootElement.appendChild(domContent);
+    MiniReact.cleanupUnusedInstances(domContent);
   }
 
   findRoute(path) {

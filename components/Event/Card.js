@@ -5,11 +5,11 @@ const Card = (props) => {
   const CardContent = MiniReact.createElement(
     "div",
     {
-      class: "h-full  flex flex-col justify-between",
+      class: "flex flex-col justify-between h-full",
     },
     MiniReact.createElement(
       "div",
-      { class: "flex " },
+      { class: "flex justify-between" },
       MiniReact.createElement(
         "div",
         null,
@@ -32,7 +32,7 @@ const Card = (props) => {
     MiniReact.createElement(
       "div",
       {
-        class: "my-4 rounded-3xl h-full flex flex-col",
+        class: "my-4 rounded-3xl h-full flex flex-col justify-center",
       },
       MiniReact.createElement(
         "span",
@@ -57,8 +57,7 @@ const Card = (props) => {
   return MiniReact.createElement(Link, {
     href: `${`http://localhost:3000/event-details?event=` + props.id}`,
     value: CardContent,
-    class:
-      "inline-block bg-white rounded-3xl w-full md:max-w-sm p-4 md:p-8 h-80",
+    class: "block w-full bg-white rounded-3xl p-5 md:p-6 h-80",
   });
 };
 

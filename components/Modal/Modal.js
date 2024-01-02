@@ -34,13 +34,14 @@ class Modal extends Component {
       {
         events: { blur: this.handleBlur },
       },
-      !this.state.show
-        ? MiniReact.createElement(Button, {
-            type: "submit",
-            title: this.props.title,
-            onClick: this.openModal,
-          })
-        : MiniReact.createElement(
+      MiniReact.createElement(Button, {
+        type: "submit",
+        title: this.props.title,
+        onClick: this.openModal,
+        class: this.props.titleClass,
+      }),
+      this.state.show
+        ? MiniReact.createElement(
             "div",
             {
               class:
@@ -69,6 +70,7 @@ class Modal extends Component {
               )
             )
           )
+        : null
     );
 
     this._dom = element;
