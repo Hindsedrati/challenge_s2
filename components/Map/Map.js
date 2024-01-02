@@ -1,6 +1,6 @@
 // Map.js
-import MiniReact from "../core/MiniReact.js";
-import Component from "../core/Component.js";
+import MiniReact from "../../core/MiniReact.js";
+import Component from "../../core/Component.js";
 
 class Map extends Component {
   constructor(props) {
@@ -9,13 +9,18 @@ class Map extends Component {
     this.markers = [];
   }
 
-  initMap() {
-    this.map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 0, lng: 0 },
-      zoom: 2,
-    });
+  async initMap() {
+    if (typeof google !== "undefined" && google.maps) {
+      const { Map } = await google.maps.importLibrary("maps");
+      this.map = new Map(document.getElementById("map"), {
+        center: { lat: 48.8499198, lng: 2.6370411 },
+        zoom: 10,
+      });
 
-    this.addMarkers();
+      this.addMarkers();
+    } else {
+      setTimeout(() => this.initMap(), 100);
+    }
   }
 
   addMarkers() {
@@ -36,6 +41,8 @@ class Map extends Component {
   }
 
   render() {
+    this.initMap();
+
     return MiniReact.createElement("div", {
       id: "map",
       style: { height: "400px" },

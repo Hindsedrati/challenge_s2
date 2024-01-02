@@ -1,4 +1,4 @@
-import MiniReact from "../../core/MiniReact";
+import MiniReact from "../../core/MiniReact.js";
 import Link from "../Link/Link";
 import Image from "../Image/Image.js";
 
