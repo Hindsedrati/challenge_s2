@@ -8,6 +8,7 @@ import Modal from "../components/Modal/Modal.js";
 import SpotContent from "../components/Modal/SpotContent.js";
 import Footer from "../components/Footer/Footer.js";
 import ErrorPage from "./ErrorPage.js";
+import { toPascalCase } from "../utils/utils.js";
 
 class EventDetails extends Component {
   constructor(props) {
@@ -188,18 +189,18 @@ class EventDetails extends Component {
             MiniReact.createElement(
               "div",
               {
-                class: "grid grid-cols-4",
+                class: "hidden md:grid grid-cols-4",
               },
               MiniReact.createElement("div"),
               MiniReact.createElement(
                 "span",
                 { class: "inline-block flex justify-center items-center" },
-                "Type"
+                "Nom"
               ),
               MiniReact.createElement(
                 "span",
                 { class: "inline-block flex justify-center items-center" },
-                "Adresse"
+                "Type"
               ),
               MiniReact.createElement(
                 "span",
@@ -220,12 +221,12 @@ class EventDetails extends Component {
                 MiniReact.createElement(
                   "span",
                   { class: "flex justify-center items-center" },
-                  spot.typology
+                  toPascalCase(spot.name)
                 ),
                 MiniReact.createElement(
                   "span",
                   { class: "flex justify-center items-center" },
-                  spot.address.toLowerCase() + ", " + spot.district
+                  toPascalCase(spot.typology)
                 ),
                 MiniReact.createElement(
                   "div",
