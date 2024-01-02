@@ -1,64 +1,43 @@
+import Component from "../../core/Component.js";
 import MiniReact from "../../core/MiniReact.js";
-import Button from "../button/Button.js";
-import Image from "../Image/Image.js";
 
-const image = MiniReact.createElement(
-    Image,
-    {
-        src: "assets/search.svg",
-        alt: "search",
-        class: "",
+export default class SearchBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { searchQuery: "" };
     }
-)
 
-const SearchInput = (props) => {
-    return MiniReact.createElement(
-        "form",
-        {},
-        MiniReact.createElement(
-            "label",
+    handleSearchInput = (e) => {
+        this.setState({ searchQuery: e.target.value });
+    };
+
+    handleSearchSubmit = (e) => {
+        e.preventDefault();
+        console.log("Recherche pour:", this.state.searchQuery);
+    };
+
+    render() {
+        return MiniReact.createElement(
+            "form",
             {
-                class: "mb-2 text-sm font-medium text-gray-900 sr-only",
-                for: "default-search",
-            }
-        ),
-        MiniReact.createElement(
-            "div",
-            {
-                class: "relative",
-            },
-            MiniReact.createElement(
-                "div",
-                {
-                    class: "absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none",
+                class: this.props.class,
+                events: {
+                    submit: this.handleSearchSubmit,
                 },
-                MiniReact.createElement(
-                    "i",
-                    {
-                        alt: "search",
-                        class: "fa-solid fa-magnifying-glass",
-                    },
-                )
-            ),
-            MiniReact.createElement(
-                "input",
-                {
-                    type: "search",
-                    id: "default-search",
-                    class: "block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500",
-                    placeholder: "Recherche un événement, une adresse, un spot ...",
-                    required: true,
-                }
-            ),
-            MiniReact.createElement(
-                Button,
-                {
-                    type: "submit",
-                    class: "text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2",
-                    title: "Rechercher",
-                }
-            )
-        )
-    )
+            },
+            MiniReact.createElement("input", {
+                type: "text",
+                class: "flex-grow rounded-l-full py-2 px-4 w-full text-gray-700 leading-tight focus:outline-none transition duration-200 ease-in-out bg-white sm:py-1 sm:px-2",
+                placeholder: "Dites moi tout ",
+                value: this.state.searchQuery,
+                events: {
+                    input: this.handleSearchInput,
+                },
+            }),
+            MiniReact.createElement("button", {
+                type: "submit",
+                class: "bg-[#D9C26C] text-white rounded-full p-2 shadow-lg hover:bg-[#b6a358] focus:outline-none w-24 h-10 flex items-center justify-center transition duration-200 ease-in-out text-md sm:w-20 sm:h-8 sm:p-1 sm:text-sm",
+            }, "Rechercher")
+        );
+    }
 }
-export default SearchInput;
