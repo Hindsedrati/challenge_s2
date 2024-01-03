@@ -1,26 +1,11 @@
-import MiniReact from "../../core/MiniReact";
-import Link from "../Link/Link";
+import MiniReact from "../../core/MiniReact.js";
+import Link from "../Link/Link.js";
 import Image from "../Image/Image.js";
 
 const EventContent = ({ event }) => {
   return MiniReact.createElement(
     "div",
     null,
-    MiniReact.createElement(
-      "div",
-      {
-        class: "flex items-center justify-between p-4 md:p-5 rounded-t",
-      },
-
-      MiniReact.createElement(
-        "h3",
-        {
-          class: "text-gray-600 body-font font-poppins",
-        },
-        event.title
-      )
-    ),
-
     MiniReact.createElement(
       "div",
       {
@@ -32,20 +17,26 @@ const EventContent = ({ event }) => {
         {
           class: "flex items-start flex-col growspace-between p-4 space-y-4",
         },
-
         MiniReact.createElement(
           "p",
           {
             class: "text-gray-600 body-font font-poppins",
           },
-          event.type
+          event.title
         ),
         MiniReact.createElement(
           "p",
           {
             class: "text-gray-600 body-font font-poppins",
           },
-          event.date
+          "Adresse : " + event.location
+        ),
+        MiniReact.createElement(
+          "p",
+          {
+            class: "text-gray-600 body-font font-poppins",
+          },
+          "Date : " + event.date
         ),
 
         MiniReact.createElement(
@@ -53,7 +44,7 @@ const EventContent = ({ event }) => {
           {
             class: "text-gray-600 body-font font-poppins",
           },
-          event.start_time + " - " + event.end_time
+          "Heure : " + event.start_time + " - " + event.end_time
         )
       ),
       MiniReact.createElement(Image, {
