@@ -154,6 +154,7 @@ class HomePage extends Component {
         })
       ),
       MiniReact.createElement("script", {
+        src: "https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js",
         src: "https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js",
       })
     );
