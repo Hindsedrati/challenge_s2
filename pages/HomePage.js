@@ -5,7 +5,6 @@ import navlinks from "../utils/navlinks.js";
 import Loader from "../components/Loader/Loader.js";
 import Map from "../components/Map/Map.js";
 import Filters from "../components/Filters/Filters.js";
-import Modal from "../components/Modal/Modal.js";
 import Footer from "../components/Footer/Footer.js";
 
 class HomePage extends Component {
@@ -81,7 +80,7 @@ class HomePage extends Component {
         { class: "container mx-auto" },
         MiniReact.createElement(
           "h1",
-          { class: "text-3xl max-w-screen-md mx-auto my-10" },
+          { class: "text-4xl max-w-screen-md mx-auto my-10" },
           MiniReact.createElement("span", null, "Explorez l'excitation des "),
           MiniReact.createElement(
             "span",

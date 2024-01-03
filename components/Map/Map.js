@@ -1,6 +1,7 @@
-// Map.js
 import MiniReact from "../../core/MiniReact.js";
 import Component from "../../core/Component.js";
+import Button from "../button/Button.js";
+import EventContent from "../Modal/EventContent.js";
 
 class Map extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class Map extends Component {
             title: event.title,
             icon: svgMarker,
           });
-          marker.addListener("click", () => this.handleMarkerClick(markerData));
+          marker.addListener("click", () => this.handleMarkerClick(event));
 
           this.markers.push(marker);
         } catch (error) {
@@ -75,11 +76,53 @@ class Map extends Component {
 
   render() {
     this.initMap();
-
-    return MiniReact.createElement("div", {
+    console.log(this.state.event);
+    const mapElement = MiniReact.createElement("div", {
       id: "map",
-      style: { height: "400px" },
+      style: { height: "700px" },
     });
+
+    const modalElement = this.state.show
+      ? MiniReact.createElement(
+          "div",
+          {
+            class:
+              "modal-background transition-opacity duration-1000 ease-in opacity-0 opacity-100 flex items-center justify-center bg-black/40 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full",
+            onClick: () => this.setState({ show: false }),
+          },
+          MiniReact.createElement(
+            "div",
+            {
+              class: "modal-content relative p-4 w-full max-w-2xl max-h-full",
+            },
+            MiniReact.createElement(
+              "div",
+              {
+                class: "modal-inner relative bg-white rounded-lg shadow-xl",
+              },
+              MiniReact.createElement(Button, {
+                type: "button",
+                title: MiniReact.createElement("i", {
+                  class: "fa-solid fa-xmark",
+                }),
+                class:
+                  "absolute top-0 right-0 m-1 text-gray-400 bg-slate-200 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center",
+                onClick: () => this.setState({ show: false }),
+              }),
+              MiniReact.createElement(EventContent, { event: this.state.event })
+            )
+          )
+        )
+      : null;
+
+    const element = MiniReact.createElement(
+      "div",
+      null,
+      mapElement,
+      modalElement
+    );
+    this._dom = element;
+    return element;
   }
 }
 
