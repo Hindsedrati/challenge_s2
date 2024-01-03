@@ -27,6 +27,7 @@ class Map extends Component {
       });
 
       this.addMarkers();
+      this.setupMarkerCluster();
     } else {
       setTimeout(() => this.initMap(), 100);
     }
@@ -74,9 +75,21 @@ class Map extends Component {
       });
   }
 
+  setupMarkerCluster() {
+    if (typeof MarkerClusterer !== "undefined") {
+      new MarkerClusterer(this.map, this.markers, {
+        imagePath:
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+        gridSize: 50,
+        maxZoom: 15,
+      });
+    } else {
+      console.error("MarkerClusterer is not defined");
+    }
+  }
+
   render() {
     this.initMap();
-    console.log(this.state.event);
     const mapElement = MiniReact.createElement("div", {
       id: "map",
       style: { height: "700px" },
