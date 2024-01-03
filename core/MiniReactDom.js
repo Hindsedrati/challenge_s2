@@ -61,11 +61,6 @@ const MiniReactDom = {
     return element;
   },
 
-  constructClassInstance: function (ComponentClass, props) {
-    const instance = new ComponentClass(props);
-    return instance;
-  },
-
   diff: function (oldTree, newTree) {
     if (oldTree === null || newTree === null) {
       return;

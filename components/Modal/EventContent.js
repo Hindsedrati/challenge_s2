@@ -1,26 +1,11 @@
-import MiniReact from "../../core/MiniReact";
-import Link from "../Link/Link";
+import MiniReact from "../../core/MiniReact.js";
+import Link from "../Link/Link.js";
 import Image from "../Image/Image.js";
 
 const EventContent = ({ event }) => {
   return MiniReact.createElement(
     "div",
     null,
-    MiniReact.createElement(
-      "div",
-      {
-        class: "flex items-center justify-between p-4 md:p-5 rounded-t",
-      },
-
-      MiniReact.createElement(
-        "h3",
-        {
-          class: "text-gray-600 body-font font-poppins",
-        },
-        event.title
-      )
-    ),
-
     MiniReact.createElement(
       "div",
       {
@@ -32,20 +17,26 @@ const EventContent = ({ event }) => {
         {
           class: "flex items-start flex-col growspace-between p-4 space-y-4",
         },
-
         MiniReact.createElement(
           "p",
           {
             class: "text-gray-600 body-font font-poppins",
           },
-          event.type
+          event.title
         ),
         MiniReact.createElement(
           "p",
           {
             class: "text-gray-600 body-font font-poppins",
           },
-          event.date
+          "Adresse : " + event.location
+        ),
+        MiniReact.createElement(
+          "p",
+          {
+            class: "text-gray-600 body-font font-poppins",
+          },
+          "Date : " + event.date
         ),
 
         MiniReact.createElement(
@@ -53,7 +44,7 @@ const EventContent = ({ event }) => {
           {
             class: "text-gray-600 body-font font-poppins",
           },
-          event.start_time + " - " + event.end_time
+          "Heure : " + event.start_time + " - " + event.end_time
         )
       ),
       MiniReact.createElement(Image, {
@@ -100,7 +91,7 @@ const EventContent = ({ event }) => {
         },
 
         MiniReact.createElement(Link, {
-          href: `${`http://localhost:3000/event-details?event=` + event.id}`,
+          href: `${`http://127.0.0.1:5500/event-details?event=` + event.id}`,
           value: "Plus d'info",
           class:
             "ms-3 text-white bg-[#87A397] hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10",
