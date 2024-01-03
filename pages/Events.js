@@ -139,14 +139,14 @@ class Events extends Component {
     const content =
       currentEvents.length > 0
         ? MiniReact.createElement(
-            "div",
-            {
-              class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-            },
-            ...currentEvents.map((event) => {
-              return MiniReact.createElement(Card, event);
-            })
-          )
+          "div",
+          {
+            class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5",
+          },
+          ...currentEvents.map((event) => {
+            return MiniReact.createElement(Card, event);
+          })
+        )
         : MiniReact.createElement(NoData);
 
     element = MiniReact.createElement(
@@ -157,7 +157,7 @@ class Events extends Component {
       }),
       MiniReact.createElement(
         "main",
-        { class: "container mx-auto h-2/3" },
+        { class: "p-3 container mx-auto h-2/3" },
         MiniReact.createElement(
           "h1",
           { class: "w-fit mx-auto my-20 uppercase text-3xl" },
@@ -183,9 +183,9 @@ class Events extends Component {
               "option",
               this.state.filter === "all"
                 ? {
-                    value: "all",
-                    selected: true,
-                  }
+                  value: "all",
+                  selected: true,
+                }
                 : { value: "all" },
               "Type de sport"
             ),
@@ -194,12 +194,12 @@ class Events extends Component {
                 "option",
                 this.state.filter === type
                   ? {
-                      value: type,
-                      selected: true,
-                    }
+                    value: type,
+                    selected: true,
+                  }
                   : {
-                      value: type,
-                    },
+                    value: type,
+                  },
                 type
               );
             })
@@ -219,9 +219,9 @@ class Events extends Component {
               "option",
               this.state.discipline === "all"
                 ? {
-                    value: "all",
-                    selected: true,
-                  }
+                  value: "all",
+                  selected: true,
+                }
                 : { value: "all" },
               "Discipline"
             ),
@@ -230,12 +230,12 @@ class Events extends Component {
                 "option",
                 this.state.discipline === discipline
                   ? {
-                      value: discipline,
-                      selected: true,
-                    }
+                    value: discipline,
+                    selected: true,
+                  }
                   : {
-                      value: discipline,
-                    },
+                    value: discipline,
+                  },
                 discipline
               );
             })
@@ -245,13 +245,13 @@ class Events extends Component {
       ),
       this.state.filteredEvents.length > this.state.eventsPerPage &&
         this.state.currentPage <=
-          Math.ceil(this.state.filteredEvents.length / this.state.eventsPerPage)
+        Math.ceil(this.state.filteredEvents.length / this.state.eventsPerPage)
         ? MiniReact.createElement(Paginate, {
-            key: this.childrenKey,
-            eventsPerPage: this.state.eventsPerPage,
-            totalEvents: this.state.filteredEvents.length,
-            handlePagination: this.handlePagination,
-          })
+          key: this.childrenKey,
+          eventsPerPage: this.state.eventsPerPage,
+          totalEvents: this.state.filteredEvents.length,
+          handlePagination: this.handlePagination,
+        })
         : null,
       MiniReact.createElement(Footer)
     );
