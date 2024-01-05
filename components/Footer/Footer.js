@@ -6,7 +6,7 @@ const Footer = () => {
   return MiniReact.createElement(
     "footer",
     {
-      class: `h-[100px] bg-[#87A397] mt-4 mb-[80px] md:mb-0`,
+      class: `h-[100px] bg-[#87A397] mt-8 mb-[80px] md:mb-0`,
     },
     MiniReact.createElement(
       "div",
@@ -15,19 +15,22 @@ const Footer = () => {
           "flex justify-between items-center gap-4 container mx-auto px-4 py-2",
       },
       MiniReact.createElement(Link, {
-          value: MiniReact.createElement(Image, {
-              src: "assets/logo.svg",
-              alt: "logo",
-              class: "",
-          }),
-          class: "text-sm font-semibold leading-6 text-gray-900",
-          href: "/",
+        value: MiniReact.createElement(Image, {
+          src: "assets/logo.svg",
+          alt: "logo",
+          class: "",
+        }),
+        class: "text-sm font-semibold leading-6 text-gray-900",
+        href: "/",
       }),
-      MiniReact.createElement("span", {
-              class: "text-white text-xs font-medium",
-          },
-          "Copyright - Tous droits réservés")
-        )
-    );
-}
+      MiniReact.createElement(
+        "span",
+        {
+          class: "text-white text-xs font-medium",
+        },
+        "Copyright - Tous droits réservés"
+      )
+    )
+  );
+};
 export default Footer;

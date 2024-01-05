@@ -56,12 +56,12 @@ export default class Header extends Component {
       MiniReact.createElement(
         "nav",
         {
-          class: "container mx-auto border-gray-200",
+          class: "container w-11/12 mx-auto border-gray-200",
         },
         MiniReact.createElement(
           "div",
           {
-            class: "flex flex-wrap items-center mx-auto p-4",
+            class: "flex flex-wrap items-center mx-auto p-y",
           },
           MiniReact.createElement(Link, {
             value: MiniReact.createElement(Image, {
