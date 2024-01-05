@@ -61,7 +61,7 @@ class Filters extends Component {
         "select",
         {
           class:
-            "py-3 px-4 bg-white focus:outline-none block w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
+            "p-2 md:py-3 md:px-4 bg-white focus:outline-none block w-36 md:w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
           events: {
             change: (e) => {
               this.filterEvents(e.target.value, this.state.discipline);
@@ -97,7 +97,7 @@ class Filters extends Component {
         "select",
         {
           class:
-            "py-3 px-4 bg-white focus:outline-none block w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
+            "p-2 md:py-3 md:px-4 bg-white focus:outline-none block w-36 md:w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
           events: {
             change: (e) => {
               this.filterEvents(this.state.filter, e.target.value);

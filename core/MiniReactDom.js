@@ -131,7 +131,6 @@ const MiniReactDom = {
     const isChild = parent.contains(oldElementDom);
 
     if (hasChanges) {
-      console.log(parent);
       if (isChild) {
         parent.replaceChild(newElementDom, oldElementDom);
 

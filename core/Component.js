@@ -15,7 +15,11 @@ export default class Component {
    * @returns A unique identifier that is used to track instances
    */
   generateUniqueKey() {
-    return Symbol.for(`__uniqueKey_${this.instanceKeyCounter++}`);
+    const currentTime = Date.now();
+    return Symbol.for(
+      `__uniqueKey_${this.constructor.name}_${currentTime}_${this
+        .instanceKeyCounter++}`
+    );
   }
 
   /**
