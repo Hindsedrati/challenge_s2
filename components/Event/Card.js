@@ -9,14 +9,14 @@ const Card = (props) => {
     },
     MiniReact.createElement(
       "div",
-      { class: "flex justify-between" },
+      { class: "flex justify-between text-[14px]" },
       MiniReact.createElement(
         "div",
-        null,
-        MiniReact.createElement("span", { class: "font-semibold" }, props.date),
+        { class: "font-semibold" },
+        MiniReact.createElement("span", null, props.date),
         MiniReact.createElement(
           "h1",
-          { class: "font-bold text-md uppercase" },
+          { class: "text-md uppercase" },
           props.title
         )
       ),
@@ -32,7 +32,7 @@ const Card = (props) => {
     MiniReact.createElement(
       "div",
       {
-        class: "my-4 rounded-3xl h-full flex flex-col justify-center",
+        class: "my-2 rounded-3xl h-full flex flex-col justify-center",
       },
       MiniReact.createElement(
         "span",

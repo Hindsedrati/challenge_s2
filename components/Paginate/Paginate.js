@@ -37,7 +37,7 @@ class Paginate extends Component {
                   number === this.state.currentPage
                     ? "border-blue-600"
                     : "border-slate-300"
-                } px-4 py-3 border-2 bg-white rounded-md cursor-pointer`,
+                } p-2 md:px-4 md:py-3 border-2 bg-white rounded-md cursor-pointer`,
                 events: { click: () => this.paginate(number) },
               },
               number
@@ -62,7 +62,7 @@ class Paginate extends Component {
         MiniReact.createElement(
           "li",
           {
-            class: `px-4 py-3 border-2 bg-white rounded-md cursor-pointer ${
+            class: `p-2 md:px-4 md:py-3 border-2 bg-white rounded-md cursor-pointer ${
               this.state.currentPage <= 1
                 ? "border-slate-300 text-slate-300"
                 : "border-black text-black"
@@ -82,7 +82,7 @@ class Paginate extends Component {
         MiniReact.createElement(
           "li",
           {
-            class: `px-4 py-3 border-2 bg-white rounded-md cursor-pointer ${
+            class: `p-2 md:px-4 md:py-3 border-2 bg-white rounded-md cursor-pointer ${
               this.state.currentPage >= pageNumber.length
                 ? "border-slate-300 text-slate-300"
                 : "border-black text-black"

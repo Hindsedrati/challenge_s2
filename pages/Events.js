@@ -157,22 +157,22 @@ class Events extends Component {
       }),
       MiniReact.createElement(
         "main",
-        { class: "p-3 container mx-auto h-2/3" },
+        { class: "container w-11/12 mx-auto" },
         MiniReact.createElement(
           "h1",
-          { class: "w-fit mx-auto my-20 uppercase text-3xl" },
+          { class: "w-fit mx-auto my-14 uppercase text-[24px]" },
           "Liste des évènements"
         ),
         MiniReact.createElement(
           "div",
           {
-            class: "flex items-center  space-x-2 my-10",
+            class: "flex items-center space-x-2 mb-10",
           },
           MiniReact.createElement(
             "select",
             {
               class:
-                "py-3 px-4 bg-white focus:outline-none block w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
+                "p-2 md:py-3 md:px-4 bg-white focus:outline-none block w-36 md:w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
               events: {
                 change: (e) => {
                   this.filterEvents(e.target.value, this.state.discipline);
@@ -208,7 +208,7 @@ class Events extends Component {
             "select",
             {
               class:
-                "py-3 px-4 bg-white focus:outline-none block w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
+                "p-2 md:py-3 md:px-4 bg-white focus:outline-none block w-36 md:w-48 border-gray-200 rounded-full text-sm disabled:opacity-50 disabled:pointer-events-none",
               events: {
                 change: (e) => {
                   this.filterEvents(this.state.filter, e.target.value);
