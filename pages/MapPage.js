@@ -7,7 +7,7 @@ import Map from "../components/Map/Map.js";
 import Filters from "../components/Filters/Filters.js";
 import Footer from "../components/Footer/Footer.js";
 
-class HomePage extends Component {
+class MapPage extends Component {
   constructor(props) {
     super(props);
 
@@ -77,29 +77,24 @@ class HomePage extends Component {
       }),
       MiniReact.createElement(
         "div",
-        { class: "container mx-auto" },
+        { class: "container w-11/12 mx-auto" },
         MiniReact.createElement(
           "h1",
-          { class: "text-4xl max-w-screen-md mx-auto my-10" },
+          { class: "text-3xl lg:text-5xl mx-auto my-10 md:mt-20" },
           MiniReact.createElement("span", null, "Explorez l'excitation des "),
           MiniReact.createElement(
             "span",
             {
               class:
-                "inline-block text-5xl animate-pulse text-transparent bg-clip-text bg-gradient-to-br from-slate-600 via-[#87A397] to-yellow-500 font-semibold",
+                "inline-block animate-pulse text-transparent bg-clip-text bg-gradient-to-br from-slate-600 via-[#87A397] to-yellow-500 font-semibold",
             },
             "JO 2024"
           ),
           MiniReact.createElement(
             "span",
             null,
-            " avec notre Carte Interactive des Événements et Spots Incontournables !"
+            " avec notre carte interactive des événements et spots incontournables !"
           )
-        ),
-        MiniReact.createElement(
-          "h2",
-          { class: "text-lg mb-10" },
-          "Plongez dans l'univers palpitant des Jeux Olympiques de 2024 grâce à notre carte interactive ! Découvrez tous les événements et lieux incontournables, et personnalisez votre expérience en filtrant par catégorie et type d'événement. Que vous soyez passionné de sports, de culture ou d'aventures, trouvez les moments qui vous ressemblent et créez des souvenirs inoubliables au cœur de cet événement mondial."
         ),
         MiniReact.createElement(Filters, {
           key: this.childrenKey1,
@@ -163,4 +158,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default MapPage;

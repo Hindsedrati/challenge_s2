@@ -49,14 +49,17 @@ class HomePage extends Component {
         MiniReact.createElement(
           "div",
           {
-            class: "grid grid-cols-1 md:grid-cols-2",
+            class: "grid grid-cols-1 lg:grid-cols-2 w-11/12 lg:w-full mx-auto",
           },
           MiniReact.createElement(
             "div",
-            { class: "flex flex-col gap-14 md:mt-[80px]" },
+            { class: "flex flex-col gap-8 md:gap-14 md:mt-[80px]" },
             MiniReact.createElement(
               "h1",
-              { class: "uppercase text-6xl leading-tight" },
+              {
+                class:
+                  "uppercase text-[36px] md:text-6xl leading-snug md:leading-tight",
+              },
               MiniReact.createElement(
                 "span",
                 { class: "inline-block" },
@@ -66,10 +69,18 @@ class HomePage extends Component {
                 "span",
                 {
                   class:
-                    "inline-block text-7xl animate-pulse text-transparent bg-clip-text bg-gradient-to-br from-slate-600 via-[#87A397] to-yellow-500 font-semibold",
+                    "inline-block text-[46px] md:text-7xl animate-pulse text-transparent bg-clip-text bg-gradient-to-br from-slate-600 via-[#87A397] to-yellow-500 font-semibold",
                 },
                 "Paris 2024"
               )
+            ),
+            MiniReact.createElement(
+              "div",
+              { class: "lg:hidden" },
+              MiniReact.createElement(Image, {
+                src: "../assets/paris_2024.png",
+                alt: "Paris 2024",
+              })
             ),
             MiniReact.createElement(
               "h2",
@@ -78,16 +89,16 @@ class HomePage extends Component {
             ),
             MiniReact.createElement(
               "div",
-              { class: "flex gap-[56px]" },
+              { class: "flex flex-col md:flex-row gap-6 md:gap-[56px]" },
               MiniReact.createElement(Link, {
                 class:
-                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
+                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-full md:w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
                 href: "http://localhost:3000/map",
                 value: "Carte",
               }),
               MiniReact.createElement(Link, {
                 class:
-                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
+                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-full md:w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
                 href: "http://localhost:3000/evenements",
                 value: "Evenement",
               })
@@ -95,7 +106,7 @@ class HomePage extends Component {
           ),
           MiniReact.createElement(
             "div",
-            null,
+            { class: "hidden lg:block" },
             MiniReact.createElement(Image, {
               src: "../assets/paris_2024.png",
               alt: "Paris 2024",

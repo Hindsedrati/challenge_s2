@@ -21,18 +21,38 @@ class Countdown extends Component {
       "div",
       {
         class:
-          "flex items-center justify-center text-center bg-[#87A397] md:rounded-full mb-[30px] md:p-8 md:my-[96px]",
+          "flex items-center justify-center text-center bg-[#87A397] md:rounded-full mb-[30px] py-4 md:p-8 md:my-[96px]",
       },
       MiniReact.createElement(
         "div",
         {
           class:
-            "grid grid-cols-4 md:gap-4 text-xl md:text-5xl font-bold text-white",
+            "grid grid-cols-4 gap-8 text-lg md:text-2xl lg:text-5xl font-semibold text-white",
         },
-        MiniReact.createElement("span", { class: "bloc" }, `${jours} JOURS`),
-        MiniReact.createElement("span", { class: "bloc" }, `${heures} HRS`),
-        MiniReact.createElement("span", { class: "bloc" }, `${minutes} MIN`),
-        MiniReact.createElement("span", { class: "bloc" }, `${secondes} SEC`)
+        MiniReact.createElement(
+          "span",
+          { class: "block" },
+          `${jours} `,
+          MiniReact.createElement("span", { class: "block" }, "JOURS")
+        ),
+        MiniReact.createElement(
+          "span",
+          { class: "block" },
+          `${heures} `,
+          MiniReact.createElement("span", { class: "block" }, "HRS")
+        ),
+        MiniReact.createElement(
+          "span",
+          { class: "block" },
+          `${minutes} `,
+          MiniReact.createElement("span", { class: "block" }, "MIN")
+        ),
+        MiniReact.createElement(
+          "span",
+          { class: "block" },
+          `${secondes} `,
+          MiniReact.createElement("span", { class: "block" }, "SEC")
+        )
       )
     );
     this._dom = element;
