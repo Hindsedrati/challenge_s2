@@ -93,13 +93,13 @@ class HomePage extends Component {
               MiniReact.createElement(Link, {
                 class:
                   "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-full md:w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
-                href: "http://localhost:3000/map",
+                href: "/map",
                 value: "Carte",
               }),
               MiniReact.createElement(Link, {
                 class:
                   "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-full md:w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
-                href: "http://localhost:3000/events",
+                href: "/events",
                 value: "Evenement",
               })
             )
