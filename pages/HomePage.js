@@ -6,11 +6,33 @@ import Footer from "../components/Footer/Footer.js";
 import Button from "../components/button/Button.js";
 import Link from "../components/Link/Link.js";
 import Image from "../components/Image/Image.js";
+import Countdown from "../components/CountDown/CountDown.js";
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
+
+    this.childrenKey = this.generateUniqueKey();
   }
+
+  calculateTimeLeft = () => {
+    const jo2024 = new Date("2024-07-26");
+    const now = new Date();
+    const difference = jo2024 - now;
+
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        jours: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        heures: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        secondes: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
 
   render() {
     const element = MiniReact.createElement(
@@ -21,7 +43,9 @@ class HomePage extends Component {
       }),
       MiniReact.createElement(
         "main",
-        { class: "container mx-auto" },
+        {
+          class: "container mx-auto flex flex-col-reverse md:flex-col",
+        },
         MiniReact.createElement(
           "div",
           {
@@ -49,21 +73,21 @@ class HomePage extends Component {
             ),
             MiniReact.createElement(
               "h2",
-              { class: "text-[24px] text-2xl font-semibold" },
-              "Deux façons de voir les Jeux Olympiques"
+              { class: "text-[24px] font-semibold" },
+              "Deux façons de voir les Jeux Olympiques :"
             ),
             MiniReact.createElement(
               "div",
               { class: "flex gap-[56px]" },
               MiniReact.createElement(Link, {
                 class:
-                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-[212px] text-center",
+                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
                 href: "http://localhost:3000/map",
                 value: "Carte",
               }),
               MiniReact.createElement(Link, {
                 class:
-                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-[212px] text-center",
+                  "uppercase text-[18px] text-white rounded-[15px] bg-[#87A397] py-[18px] w-[212px] text-center hover:bg-[#E9CE6B] hover:text-black transition-all delay-0 duration-150 cursor-pointer",
                 href: "http://localhost:3000/evenements",
                 value: "Evenement",
               })
@@ -77,7 +101,11 @@ class HomePage extends Component {
               alt: "Paris 2024",
             })
           )
-        )
+        ),
+        MiniReact.createElement(Countdown, {
+          key: this.childrenKey,
+          timeLeft: this.calculateTimeLeft,
+        })
       ),
       MiniReact.createElement(Footer)
     );

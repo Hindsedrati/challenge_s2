@@ -6,6 +6,8 @@ export default class Component {
     this.state = {};
     this._dom = null;
     this.instanceKeyCounter = 0;
+
+    this.render = this.render.bind(this);
   }
 
   /**
@@ -43,6 +45,8 @@ export default class Component {
   _domRef() {
     return MiniReactDom.elementReferences.get(this._dom);
   }
+
+  componentDidMount() {}
 
   render() {}
 }
