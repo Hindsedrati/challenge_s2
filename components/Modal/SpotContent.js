@@ -1,7 +1,7 @@
 import MiniReact from "../../core/MiniReact.js";
 import Image from "../Image/Image.js";
 
-import { toPascalCase } from "../../utils/utils.js";
+import { firstLetterToUpperCase } from "../../utils/utils.js";
 
 const SpotContent = ({ spot }) => {
   return MiniReact.createElement(
@@ -21,15 +21,16 @@ const SpotContent = ({ spot }) => {
       MiniReact.createElement(
         "h3",
         {
-          class: "text-gray-600 body-font font-poppins",
+          class: "text-gray-600 body-font font-poppins text-[38px]",
         },
-        toPascalCase(spot.name)
+        firstLetterToUpperCase(spot.name)
       )
     ),
     MiniReact.createElement(
       "div",
       {
-        class: "flex items-start flex-row justify-between p-4 pr-8 border-b",
+        class:
+          "flex items-start flex-row justify-between p-4 pr-8 border-b text-[17px]",
       },
 
       MiniReact.createElement(

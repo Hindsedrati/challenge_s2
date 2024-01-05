@@ -1,0 +1,5 @@
+RewriteEngine On
+# Ne pas rediriger si la requête est pour un fichier statique (css, js, png, jpg, etc.)
+RewriteCond %{REQUEST_FILENAME} !-f
+# Rediriger toutes les autres requêtes vers index.html
+RewriteRule ^ index.html [L]

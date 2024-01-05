@@ -95,7 +95,12 @@ const MiniReactDom = {
         const oldChild = oldTree.children[i];
         const newChild = newTree.children[i];
 
-        if (oldChild.type === "TEXT_NODE" && newChild.type === "TEXT_NODE") {
+        if (
+          oldChild &&
+          oldChild.type === "TEXT_NODE" &&
+          newChild &&
+          newChild.type === "TEXT_NODE"
+        ) {
           if (oldChild.content !== newChild.content) {
             return true;
           }
