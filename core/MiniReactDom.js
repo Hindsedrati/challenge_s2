@@ -92,8 +92,17 @@ const MiniReactDom = {
       }
 
       for (let i = 0; i < oldTree.children.length; i++) {
-        if (MiniReactDom.diff(oldTree.children[i], newTree.children[i])) {
-          return true;
+        const oldChild = oldTree.children[i];
+        const newChild = newTree.children[i];
+
+        if (oldChild.type === "TEXT_NODE" && newChild.type === "TEXT_NODE") {
+          if (oldChild.content !== newChild.content) {
+            return true;
+          }
+        } else {
+          if (MiniReactDom.diff(oldChild, newChild)) {
+            return true;
+          }
         }
       }
     }
@@ -122,8 +131,10 @@ const MiniReactDom = {
     const isChild = parent.contains(oldElementDom);
 
     if (hasChanges) {
+      console.log(parent);
       if (isChild) {
         parent.replaceChild(newElementDom, oldElementDom);
+
         MiniReactDom.parentReferences.set(newElement, parent);
         MiniReactDom.elementReferences.set(newElement, newElementDom);
       }
