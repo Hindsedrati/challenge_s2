@@ -30,6 +30,11 @@ const MiniReact = {
         instance.props = { ...props, children: processedChildren };
         MiniReact.componentPropsRefecence.set(key, instance.props);
       }
+
+      if (typeof instance.componentDidMount === "function") {
+        instance.componentDidMount();
+      }
+
       return instance.render();
     } else if (typeof type === "function") {
       return type({ ...props, children: processedChildren });
