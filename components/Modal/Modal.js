@@ -29,6 +29,10 @@ class Modal extends Component {
   };
 
   render() {
+    if (this.props?.show) {
+      this.setState({ show: this.props?.show });
+    }
+
     let element = MiniReact.createElement(
       "div",
       {
