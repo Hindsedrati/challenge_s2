@@ -6,8 +6,9 @@ import ErrorPage from "./pages/ErrorPage.js";
 
 const routes = [
   { path: "/", component: HomePage },
-  { path: "/map", component: MapPage },
   { path: "/events", component: Events },
+  { path: "/map", component: MapPage },
+  { path: "/evenements", component: Events },
   { path: "/event-details", component: EventDetails },
   { path: "*", component: ErrorPage },
 ];
