@@ -55,7 +55,7 @@ const Card = (props) => {
   );
 
   return MiniReact.createElement(Link, {
-    href: `${`http://localhost:3000/event-details?event=` + props.id}`,
+    href: `${`https://challenge.bornenexus.fr/event-details?event=` + props.id}`,
     value: CardContent,
     class: "block w-full bg-white rounded-3xl p-5 md:p-6 h-80",
   });
