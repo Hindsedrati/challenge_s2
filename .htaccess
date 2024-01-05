@@ -1,0 +1,3 @@
+RewriteEngine On
+# Redirect all requests to index.html
+RewriteRule ^(.*)$ /index.html [L]

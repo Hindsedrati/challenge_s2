@@ -5,17 +5,17 @@ import Image from "../Image/Image.js";
 const EventContent = ({ event }) => {
   return MiniReact.createElement(
     "div",
-    null,
+    { class: "w-11/12 mx-auto pt-8" },
     MiniReact.createElement(
       "div",
       {
-        class: "flex items-start flex-row justify-between p-4 pr-8 border-b",
+        class: "flex items-start flex-row justify-between border-b",
       },
 
       MiniReact.createElement(
         "div",
         {
-          class: "flex items-start flex-col growspace-between p-4 space-y-4",
+          class: "flex items-start flex-col growspace-between pb-4",
         },
         MiniReact.createElement(
           "p",
@@ -54,47 +54,53 @@ const EventContent = ({ event }) => {
       })
     ),
 
-    // Modal Body
+    MiniReact.createElement(
+      "p",
+      {
+        class: "text-base leading-relaxed text-gray-500 mt-10",
+      },
+      event.description
+    ),
+    MiniReact.createElement("h3", { class: "mt-8 mb-4" }, "Les spots"),
     MiniReact.createElement(
       "div",
-      {
-        class: "p-4 md:p-5 space-y-4",
-      },
-
-      MiniReact.createElement(
-        "p",
-        {
-          class: "text-base leading-relaxed text-gray-500 ",
-        },
-        event.description
-      ),
-
-      MiniReact.createElement(
-        "p",
-        {
-          class: "text-base leading-relaxed text-gray-500 ",
-        },
-        event.content
+      { class: "grid grid-cols-1 md:grid-cols-2 gap-4" },
+      ...event.spot.map((spot) =>
+        MiniReact.createElement(
+          "div",
+          { class: "relative" },
+          MiniReact.createElement("img", {
+            src: spot.image,
+            class:
+              "rounded-xl md:rounded-full w-full h-[150px] md:h-[100px] object-cover",
+          }),
+          MiniReact.createElement(
+            "span",
+            {
+              class: "flex justify-center items-center",
+            },
+            spot.name
+          )
+        )
       )
     ),
     MiniReact.createElement(
       "div",
       {
-        class: "p-4 md:p-5 space-y-4",
+        class: "py-10",
       },
 
       MiniReact.createElement(
         "div",
         {
-          class:
-            "flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ",
+          class: "flex justify-center md:justify-start",
         },
 
         MiniReact.createElement(Link, {
-          href: `${`https://challenge.bornenexus.fr/event-details?event=` + event.id}`,
+          href: `${`/event-details?event=` + event.id}`,
           value: "Plus d'info",
           class:
-            "ms-3 text-white bg-[#87A397] hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10",
+            "text-white bg-[#87A397] hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 ",
         })
       )
     )
